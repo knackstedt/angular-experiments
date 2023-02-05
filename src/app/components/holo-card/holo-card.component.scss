@@ -27,6 +27,7 @@ app-holo-card {
 }
 
 .card {
+    user-select: none;
 
     --grain: url("/assets/img/grain.webp");
     --glitter: url("/assets/img/glitter.png");

@@ -1,9 +1,10 @@
 :host {
     display: flex;
     height: 100%;
-    background-color: brown;
+    background-color: #00000069;
     flex-wrap: wrap;
     overflow-y: auto;
+    color: #fff;
 }
 
 .card-grid {

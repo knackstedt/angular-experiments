@@ -173,8 +173,11 @@ export class HoloCardComponent implements OnInit, AfterViewInit {
     @Input() trainerGallery: string;
     @Input() img: string;
     @Input() foil: string;
+    @Input() shine: string;
     @Input() mask: string;
     @Input() isReverse = false;
+
+    @Input() aspect = 0.718;
 
     private _width = 245;
     @Input() set width(val) {
@@ -231,6 +234,7 @@ export class HoloCardComponent implements OnInit, AfterViewInit {
         if (el) {
             el.style['width'] = this._width + 'px';
             el.style['height'] = this._height + 'px';
+            el.style["--card-aspect"] = 1;
         }
     }
 
@@ -251,6 +255,9 @@ export class HoloCardComponent implements OnInit, AfterViewInit {
     }
 
     foilMaskImage(prop, type = "masks") {
+        if (prop.startsWith("http"))
+            return prop;
+
         const server = "https://poke-holo.b-cdn.net";
         /**
          * Shiny Vault Card (starts with sv)
@@ -387,6 +394,7 @@ export class HoloCardComponent implements OnInit, AfterViewInit {
             --seedy: ${this.randomSeed.y};
             --cosmosbg: ${this.cosmosPosition.x}px ${this.cosmosPosition.y}px;
             ${this.mask ? `--mask: url(${this.maskImage()});` : ''}
+            ${this.shine ? `--shine: url(${this.shine});` : ''}
             ${this.foil ? `--foil: url(${this.foilImage()});` : ''}
         `)
 

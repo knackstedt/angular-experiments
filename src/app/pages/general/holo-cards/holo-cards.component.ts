@@ -16,7 +16,27 @@ import data from "./cards.json";
 export class HoloCardsComponent {
     cards = data;
 
-    showcase = data[0];
+    showcase = {
+        // 2202x2202
+        number: '132',
+        "id": "swsh9-132",
+        "set": "swsh9",
+        "name": "Boss's Orders",
+        "supertype": "pokémon",
+        "subtypes": ["basic", 'radiant'],
+        types: ['lightning'],
+        rarity: "radiant rare",
+        images: {
+            small: "https://localhost:4400/assets/img.png",
+            foil: "https://localhost:4400/assets/foil.webp",
+            shine: "https://localhost:4400/assets/foil.webp",
+            mask: "https://localhost:4400/assets/mask.webp"
+        },
+        custom: {
+            "--clip": ""
+        }
+    };
+    // showcase = data[0];
     basics = data.slice(1, 4);
     reverse = [...data.slice(4, 7), ...data.slice(70, 76)];
     holos = data.slice(7, 13);

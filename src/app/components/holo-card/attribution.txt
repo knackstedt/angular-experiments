@@ -1,5 +1,5 @@
 Originally written by Simon Goellner, I converted it into an Angular Component that doesn't rely
-on Svele springs.
+on Svelte springs.
 
 
 Copyright (c) 2023 by Simon Goellner (https://codepen.io/simeydotme/pen/abYWJdX)
