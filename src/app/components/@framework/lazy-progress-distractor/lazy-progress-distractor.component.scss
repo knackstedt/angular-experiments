@@ -1,0 +1,27 @@
+:host {
+    display: contents
+}
+
+div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    z-index: 9999;
+    background: #efefef;
+    width: 100%;
+    height: 100%;
+    color: #212121;
+    --mdc-circular-progress-active-indicator-color: #212121;
+
+    transition: opacity 300ms ease-in-out;
+
+    &.clear {
+        opacity: 0
+    }
+}
+
+h3 {
+    color: #212121;
+}

@@ -1,0 +1,392 @@
+:root {
+    --errorColor: #e33737;
+    --font: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+    --width: 512px
+}
+
+:root a {
+    color: inherit;
+    text-decoration: none
+}
+
+:root a:hover {
+    text-decoration: underline
+}
+
+#errorOverlay-container {
+    box-shadow: 0 16px 24px #0000000f, 0 2px 6px #0000001a, 0 0 1px #0000000a;
+    backdrop-filter: blur(42px);
+    backface-visibility: visible;
+    border: inset 1px solid rgba(0, 0, 0, .2);
+    border-radius: 17px;
+    background-color: #ffffffeb;
+    width: var(--width);
+    position: fixed;
+    top: 120px;
+    right: 48px;
+    z-index: 999999;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol
+}
+
+.errorPanel {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+}
+.errorRoot--FullPage {
+    width: 500px;
+}
+
+.errorRoot--FullPage #errorOverlay-container {
+    position: static;
+    top: unset;
+    right: unset;
+    margin: 60px auto
+}
+
+.error-message--quoted {
+    color: #192e09
+}
+
+.error-Summary-ErrorIcon {
+    content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAgCAYAAAB3j6rJAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJiSURBVHgBzZdLUttAEIa7RwpVeKUD4Ip8hFSB7V3kG8AJgBPgG+CcAG4QcwPfIFpiigU5gRWcqmy1AVwVaTo9Y+yyiEeakc3jX7j0GEmfe7r/6QH4IELYUJNuN/LyPMwRU2g04lYcp1BDtUEYIPSJvvNhtHI5QcTB3vX1FThKQE0xxI8XEEohEQ2n+/sROKoWyP3BwYn6qHGA553DW4CgEFUfin6328fwmiDTbldBhFXjiHNlEkUBWMoJRCUoSNm3HB6Kx0fbsW4gnpQDQLT/l4hntlGxBlHR4NJ0mndW4D08WCWuNYgv5YXhVsJmNASi0bqbnNj9P2pKtwGiyxXxcM2tJNvd/bI3Hp82b26OJOK3dc9nc+PbHMRUrhyJgqV7QowMr4iqTK4SpNK8VvRXSnNiVphcKYhO0BLzIkvAZ5WaXCmID6AeDGFLYpO7NJWzEUSbF9EAHKTagYohgcnkjCDavKoVgqNMJrcWpKZ5AQlh46LBp6enCysQ36LuFy8tnBFZ2Tkn+cnLcv6vQ1PlypViC6I+PsiEUB3ZomMLLZ+Mm+Nxzwgy7XQmsMVKKVWe95q3t7E6LEyNi3ktRZSWrTWl8rxl5JcgVeZlUJI1Gq3FWsM+cQpuCn91Ov0CiEd0Bo7RkERXq2tNPps5R4UBzlU5axAdDQDrbmr5EsSvhQs7OxG4S5ucTtb7dntYxzeeNWLzi3MhWpwnxy4d3IpSX/0yxGeor0OGmPcqWHu/FixypNY2cZvSINxZ/YT3VTIHmc0u1Qm8k9R+WYO07u7SDLHH+1bnzfNGYjPkhfJIbdr/AfAS02LsKGiuAAAAAElFTkSuQmCC);
+    width: 20px;
+    height: 19px;
+    margin-right: 6px;
+    display: block
+}
+
+.error-Summary-CloseIcon:hover {
+    transform: scale(1.2);
+    background-color: #fff
+}
+
+.error-Summary {
+    display: grid;
+    grid-template-columns: min-content auto min-content min-content;
+    grid-template-rows: 46px;
+    align-items: center;
+    padding: 0 18px;
+    border-bottom: 1px solid rgb(220, 220, 220);
+    width: 100%;
+}
+
+.error-footer {
+    display: flex;
+    border-top: 1px solid rgb(220, 220, 220);
+    align-items: center;
+    grid-template-columns: auto auto;
+    justify-content: space-between
+}
+
+.error-footerItem {
+    padding: 12px 18px
+}
+
+.error-Summary-Title {
+    font-weight: 500;
+    letter-spacing: .36px
+}
+
+.errorTag,
+.error-code {
+    color: #0d47a1;
+    font-weight: 500;
+    font-size: 12pt
+}
+
+.errorTag {
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.error-header {
+    display: flex;
+    align-items: center;
+    gap: .5ch
+}
+
+.error-message {
+    color: var(--errorColor);
+    font-size: 16pt;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.error-list {
+    margin-top: 14px;
+    gap: 14px
+}
+
+.error-subtitle,
+.error-message {
+    padding-left: 18px;
+    padding-right: 18px
+}
+
+.error-subtitle {
+    font-size: 500
+}
+
+.error-NativeStackTrace {
+    margin-top: 0;
+    width: 100%;
+    overflow: auto;
+    border-top: 1px solid rgb(220, 220, 220);
+}
+
+.error-NativeStackTrace-filename {
+    padding: 8px 18px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: 500;
+    letter-spacing: .36px;
+    margin-bottom: 8px;
+    display: block
+}
+
+.error-NativeStackTrace-filename:hover {
+    text-decoration: underline
+}
+
+.error-SourceLines-lines a {
+    text-decoration: none
+}
+
+.error-SourceLine-text::selection,
+.error-SourceLine-text *::selection {
+    background-color: #6437e3;
+    color: #fff
+}
+
+.error-SourceLine-text:active:before {
+    width: 61px;
+    z-index: -1;
+    pointer-events: none
+}
+
+.error-SourceLine {
+    display: grid;
+    grid-template-columns: min-content auto
+}
+
+.error-SourceLines {
+    font-size: 14px;
+    align-items: center;
+    overflow-x: auto
+}
+
+.error-SourceLine-text {
+    white-space: pre;
+    cursor: text;
+    display: block;
+    position: relative;
+    font-family: var(--font)
+}
+
+.error-SourceLine-number {
+    font-variant: tabular-nums;
+    display: block;
+    border-left: 4px solid transparent;
+    margin-left: -1px;
+    cursor: pointer;
+    padding-left: 14px;
+    padding-right: 12px;
+    text-align: right;
+    text-decoration: none;
+    position: relative
+}
+
+.error-SourceLine-number,
+.error-SourceLine-number * {
+    user-select: none;
+    -webkit-user-select: none
+}
+
+.error-SourceLine-number:active+.error-SourceLine-text {
+    background-color: #6437e3;
+    color: #fff
+}
+
+.error-SourceLine-number:hover {
+    background-color: #7443fa;
+    color: #fff
+}
+
+.error-SourceLine:hover .error-SourceLine-number {
+    border-left-color: #7443fa
+}
+
+.error-SourceLine-number--empty {
+    color: #a5a5a5
+}
+
+.error-SourceLine-number,
+.error-SourceLine-text {
+    height: 18px
+}
+
+#error-SourceLine-text-highlightExpression {
+    font-weight: 700;
+    text-decoration-style: wavy
+}
+
+.error-JSException--TypeError #error-SourceLine-text-highlightExpression {
+    border: 1px solid rgba(0, 0, 0, .2)
+}
+
+.error-Indented {
+    display: inline-block;
+    user-select: none;
+    -webkit-user-select: none
+}
+
+.error-divet {
+    vertical-align: bottom;
+    user-select: none;
+    -webkit-user-select: none
+}
+
+.error-typename {
+    font-family: var(--font);
+    color: #e39437;
+    font-weight: 700
+}
+
+.error-muted {
+    font-weight: 400;
+    user-select: none;
+    -webkit-user-select: none
+}
+
+.error-muted,
+.error-StackFrame--muted {
+    color: #a5a5a5
+}
+
+.error-NativeStackTrace .error-typename {
+    user-select: none;
+    -webkit-user-select: none
+}
+
+.error-StackFrame-link {
+    text-align: right
+}
+
+.error-StackFrame-link-content {
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+    gap: .25ch;
+    white-space: nowrap
+}
+
+.error-StackFrame {
+    display: table-row
+}
+
+.error-StackFrame:hover {
+    border-left-color: #5865f2
+}
+
+.error-StackFrame-identifier {
+    padding-right: 18px;
+    font-size: .8em;
+    font-family: var(--font);
+    letter-spacing: .49px;
+    width: var(--max-length, auto);
+    max-width: 48ch;
+    white-space: nowrap;
+    text-overflow: clip;
+    overflow: hidden
+}
+
+.error-message--mono {
+    font-family: var(--font)
+}
+
+.error-StackFrame-identifier,
+.error-StackFrame-link {
+    display: table-cell;
+    font-weight: 500
+}
+
+.error-BuildError {
+    padding-bottom: 18px
+}
+
+.error-StackFrame-link-content {
+    font-size: .8em
+}
+
+.error-StackFrames {
+    display: table;
+    table-layout: auto;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    border-radius: 4px;
+    line-height: 1.2;
+    border-collapse: separate;
+    border-spacing: 12px 6px;
+    background-color: #f4f4f4
+}
+
+.error-StackFrames-container {
+    overflow-x: auto;
+    max-width: var(--width)
+}
+
+
+.marker,
+.marker-line {
+    position: relative;
+}
+
+.marker::after,
+.marker-line::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+}
+
+.marker::after {
+    content: "^";
+    height: 3px;
+    font-family: monospace;
+    font-weight: bolder;
+    margin-top: -3px;
+    color: red;
+}
+
+.marker-line::after {
+    height: 2px;
+    margin-top: -2px;
+    background: red;
+}
+
+
+.waves {
+    position: absolute;
+    background: linear-gradient(135deg, #1670c8, #4c168e);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+#rail-blob {
+    position: absolute;
+    top: 0%;
+}
+
+#tr-blob {
+    transform: translate(30%, -100%);
+}

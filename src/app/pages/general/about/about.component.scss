@@ -1,0 +1,15 @@
+:host>div{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    overflow: auto;
+    padding: 40px;
+}
+
+.team {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}

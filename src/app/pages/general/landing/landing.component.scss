@@ -1,0 +1,28 @@
+.section__background-video-wrapper, video {
+    min-height: 100%;
+    min-width: 100%;
+}
+
+@media (max-width: 1200px) {
+    .buttons {
+        flex-direction: column;
+        button {
+            width: 100%;
+        }
+    }
+    p {
+        width: auto;
+    }
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.backdrop
+{
+    background-image: './assets/img/elevate/value-cards-background.png';
+    background-size: cover;
+}

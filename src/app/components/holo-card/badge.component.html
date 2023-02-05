@@ -1,0 +1,15 @@
+<div #card class="card" [class.active]="active" [class.interacting]="interacting" [class.loading]="loading">
+    <div class="card-title">{{cardTitle}}</div>
+    <div class="card__translater">
+        <div class="card__rotator" (pointerup)="activate($event)" (pointermove)="interact($event)"
+            (mouseout)="interactEnd($event)" (blur)="deactivate($event)">
+            <!-- <img class="card__back" [src]="" alt="" /> -->
+            <div class="card__front">
+                <img [src]="cardImage" alt="" (load)="onImageLoad()" loading="lazy" />
+
+                <div class="card__glare basic {subtypes}"></div>
+                <div class="card__shine basic {subtypes} {supertype}"></div>
+            </div>
+        </div>
+    </div>
+</div>

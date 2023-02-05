@@ -1,0 +1,73 @@
+:host {
+    position: fixed;
+    top: 0;
+    left: 100%;
+    z-index: 20000;
+    width: 0;
+    pointer-events: none;
+}
+
+.toast {
+    width: 350px;
+    color: white;
+    font-family: 'poppins', 'roboto';
+    pointer-events: all;
+    padding: 12px;
+    gap: 20px;
+    margin: 20px;
+    border-radius: 6px;
+    transform: translate3d(0, 0, 0);
+    transition: all 300ms ease-in-out;
+
+    max-height: 0;
+    min-height: 64px;
+    display: block;
+
+    &>div {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &.visible {
+        max-height: 100vh;
+        transform: translate3d(-390px, 0, 0);
+    }
+
+    &.sev-error { background: #b71c1c }
+    &.sev-warn { background: #e65100 }
+    &.sev-success { background: #388e3c }
+    &.sev-info {
+        background: #1976d2;
+        ::selection {
+            background: #212121;
+        }
+    }
+
+    button {
+        color: #aaa;
+        padding: 0;
+        cursor: pointer;
+        font-size: 12px;
+        background: transparent;
+    }
+    .title {
+        display: inline-block;
+        font-weight: bold;
+    }
+    .close {
+        float: right;
+        background: transparent;
+    }
+
+    .details {
+
+        .stack {
+            max-height: 0;
+            transition: all 300ms ease-in-out;
+            overflow: hidden;
+        }
+        &.expand .stack {
+            max-height: 500px;
+        }
+    }
+}

@@ -1,0 +1,18 @@
+<div
+    *ngFor="let item of toastItems" 
+    [class]="item.cssClass"
+    [class.visible]="item.state == 'visible'"
+    class="toast sev-{{item.severity}}"
+    >
+    <div>
+        <div class="title">{{item.title}}</div>
+        <button class="close" (click)="removeMessage(item)">
+            <img src="assets/img/ui-controls/close.svg" />
+        </button>
+    </div>
+    <div>{{item.message}}</div>
+    <div *ngIf="false" #details class="details">
+        <button (click)="details.classList.toggle('expand')">Show Details</button>
+        <div class="stack">{{item.stack}}</div>
+    </div>
+</div>

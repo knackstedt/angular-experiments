@@ -1,0 +1,40 @@
+
+app-backdrop {
+    position: relative;
+
+    [gray] {
+        color: #808080;
+    }
+    [darkblue] {
+        color: #569cd6;
+    }
+    [lightblue] {
+        color: #9cdcfe;
+    }
+    [white] {
+        color: #d4d4d4;
+    }
+    [orange] {
+        color: #ce9178;
+    }
+    p {
+        margin: 0;
+        display: inline;
+    }
+}
+
+// If there is some fatal error, use a red gradient
+body.fatal-error app-backdrop {
+    --gradientstart: rgb(255, 87, 34);
+    --gradientstop: rgb(183, 28, 28);
+
+    --wave1: rgba(144, 84, 50, 0.2);
+    --wave2: rgba(212, 28, 108, 0.3);
+    --wave3: rgba(167, 94, 68, 0.5);
+    --wave4: rgba(238, 37, 131, 8);
+    --blob: #ff0f0f;
+
+    .waves {
+        background: linear-gradient(135deg, #660e0e, #5e2626);
+    }
+}

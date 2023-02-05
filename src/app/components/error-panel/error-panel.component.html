@@ -1,0 +1,69 @@
+<div>
+  <svg class="waves" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice"
+    shape-rendering="auto" version="1.1" id="svg854" sodipodi:docname="waves-custom.svg" width="1920" height="1080"
+    xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+    xmlns:svg="http://www.w3.org/2000/svg">
+    <defs>
+      <path id="gentle-wave" style="transform: translate3d(0px, 0px, 0px);"
+        d="m -1504.3038,956.19262 c 442.1656,0 854.85345,-583.70849 1297.01901,-583.70849 442.16553,0 854.85343,583.70849 1297.01889,583.70849 442.1657,0 854.8534,-583.70849 1297.019,-583.70849 442.1655,0 854.8534,583.70849 1297.019,583.70849 V 2383.0355 h -5188.0759 z" />
+
+      <linearGradient id="blueGradient" x1="100%" y1="100%" x2="0" y2="0">
+        <stop offset="0%" style="stop-opacity:0"></stop>
+        <stop offset="50%" style="stop-opacity:0"></stop>
+        <stop offset="100%" style="stop-color:rgb(3,169,244); stop-opacity:.3"></stop>
+      </linearGradient>
+      <linearGradient id="purpleGradient" x1="0" y1="0" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-opacity:0"></stop>
+        <stop offset="30%" style="stop-opacity:0"></stop>
+        <stop offset="100%" style="stop-color:rgb(103,58,183); stop-opacity:.3"></stop>
+      </linearGradient>
+    </defs>
+    <g class="parallax">
+      <use xlink:href="#gentle-wave" x="0" y="100" width="100%" height="100%"
+        style="fill: rgba(113,47,144,0.2); animation-delay: -30s; animation-duration: 50s;" />
+      <use xlink:href="#gentle-wave" x="0" y="200" width="100%" height="100%"
+        style="fill: rgba(28,108,212,0.3); animation-delay: -17s; animation-duration: 25s;" />
+      <use xlink:href="#gentle-wave" x="0" y="400" width="100%" height="100%"
+        style="fill: rgba(94,68,167,0.5);  animation-delay: -18s; animation-duration: 20s;" />
+      <use xlink:href="#gentle-wave" x="0" y="600" width="100%" height="100%"
+        style="fill: rgba(37,131,238,8);   animation-delay: -7s; animation-duration: 20s;" />
+    </g>
+    <g id="tr-blob" style="fill: #1a6cbe; fill-opacity: 0.5;">
+      <path
+        d="m 1988.27,582.638 c -12.9,-115.829 -66.16,-222.627 -149.59,-299.995 -105.12,-97.82 -247.54,-146.25 -388.3,-148.364 -150.7,-1.922 -299.37,45.931 -450.06,41.511 C 735.694,168.103 446.44,-103.449 186.038,43.5696 59.2368,115.061 -9.12551,274.187 0.981832,425.049 11.0892,575.912 90.1103,713.321 195.962,816.715 c 55.131,53.426 118.899,99.357 161.166,164.699 126.617,195.446 6.616,528.306 253.419,642.076 165.393,76.87 296.053,-26.33 409.073,-144.9 56.42,-59.19 109.16,-129.53 176.79,-174.89 74.79,-49.97 163.18,-74.37 249.55,-90.9 100.16,-19.22 204.17,-30.75 294.04,-80.14 98.95,-57.81 174.54,-151.133 212.8,-262.711 33.93,-91.346 46.1,-189.95 35.47,-287.311 z">
+      </path>
+    </g>
+    <rect x="0" y="0" width="100%" height="100%" fill="url(#blueGradient)"></rect>
+    <rect x="0" y="0" width="100%" height="100%" fill="url(#purpleGradient)"></rect>
+  </svg>
+</div>
+
+<div class="errorPanel">
+  <div class="errorRoot--FullPage">
+    <div id="errorOverlay-container">
+      <div>
+        <div class="error-header">
+          <div class="error-Summary">
+            <div class="error-Summary-ErrorIcon"></div>
+            <div class="error-Summary-Title">{{error?.name}}</div>
+          </div>
+        </div>
+        <div class="error-list">
+          <div class="error-JSException">
+            <div class="error-header error-message">
+              <!-- <div class="error-code">{{error?.status}}</div> -->
+              <div class="errorTag errorTag--client">{{title}}</div>
+            </div>
+            <div class="error-message">{{message}}</div>
+          </div>
+        </div>
+        <br />
+        <div>
+          <div style="padding: 0px 10px 10px 20px;">
+            This incident has been recorded; You can contact es-portal-entadmins@dynatrace.com for additional support.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

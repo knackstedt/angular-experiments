@@ -1,0 +1,17 @@
+{
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=827846
+  "recommendations": [
+    "angular.ng-template",
+    "formulahendry.auto-close-tag",
+    "aaron-bond.better-comments",
+    "Angular.ng-template",
+    "EditorConfig.EditorConfig",
+    "mhutchie.git-graph",
+    "wix.vscode-import-cost",
+    "AykutSarac.jsoncrack-vscode",
+    "mrmlnc.vscode-json5",
+    "PKief.material-icon-theme",
+    "Gruntfuggly.todo-tree",
+    "WallabyJs.console-ninja"
+  ]
+}

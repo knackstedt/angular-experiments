@@ -1,0 +1,57 @@
+:host {
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+app-backdrop {
+    position: absolute;
+    z-index: 0;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+mat-toolbar {
+    z-index: 9999;
+    height: 48px;
+    padding: 0;
+
+    background-color: #323232;
+    color: #fff;
+}
+
+.main {
+    z-index: 1;
+    display: flex;
+    height: 100%;
+
+    .content {
+        flex: 1
+    }
+}
+
+.nav {
+    color: #fff;
+    user-select: none;
+    background-color: #212121;
+
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
+    li {
+        cursor: pointer;
+
+        &:hover {
+            background-color: #ffffff44;
+        }
+    }
+}

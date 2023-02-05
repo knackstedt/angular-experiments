@@ -1,0 +1,21 @@
+<table>
+    <tbody>
+        <ng-container *ngFor="let item of items">
+            <tr *ngIf="item != 'seperator'" [class.disabled]="item.disabled"
+                (click)="!item.disabled && onMenuItemClick(item, $event)">
+                <td class="icon">
+                    <img [src]="item.icon" />
+                </td>
+                <td class="label" [innerHTML]="formatLabel(item.label)">
+                </td>
+                <td class="shortcut">
+                    {{item.shortcutLabel}}
+                </td>
+            </tr>
+
+            <tr class="hr" *ngIf="item == 'seperator'">
+                <td colspan="3"></td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>

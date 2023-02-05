@@ -1,0 +1,30 @@
+<!-- This is the animated background. -->
+<app-backdrop></app-backdrop>
+
+<!-- We use this outer component to hide the DOM until we have something relevant to show -->
+<ng-container>
+    <mat-toolbar>
+        <div class="logo" (click)="navigator.loadHomepage()"></div>
+    </mat-toolbar>
+
+    <!-- Main area with the nav and contents -->
+    <div class="main">
+        <!-- Navigation menu on the left. -->
+        <div class="nav" *ngIf="!isMobile">
+            <ul>
+                <ng-container *ngFor="let page of pages">
+                    <li *ngIf="!page.hidden" (click)="navigator.onMenuItemNavigate('#/' + page.id)">{{page.id}}</li>
+                </ng-container>
+            </ul>
+        </div>
+
+        <div class="content">
+            <ng-container *ngFor="let page of [navigator.activePage$.value]">
+                <ng-template *ngIf="page" [lazyLoad]="page"></ng-template>
+            </ng-container>
+        </div>
+    </div>
+</ng-container>
+
+<!-- We need to have an inject space for the component -->
+<app-toast></app-toast>
