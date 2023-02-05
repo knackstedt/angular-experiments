@@ -26,6 +26,8 @@ export const RegisteredComponents: {
     { id: 'VSCode', load: () => import('src/app/pages/general/vscode/vscode.component'), icon: "code", order: 2 },
     { id: 'React Flow', load: () => import('src/app/pages/@react/reactflow/reactflow-wrapper'), icon: "schema", order: 3 },
 
+    { id: 'info-dialog', load: () => import('src/app/pages/general/info-dialog/info-dialog.component'), hidden: true },
+
     { id: 'Intentionally Blank', load: () => import('src/app/pages/@framework/intentionally-blank/intentionally-blank.component'), hidden: true },
 ]
 // Read only -- this should be completely immutable.

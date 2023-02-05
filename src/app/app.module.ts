@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { RootComponent } from './root.component';
 import { BackdropComponent } from './components/backdrop/backdrop.component';
@@ -14,8 +15,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UrlSanitizer } from './pipes/url-sanitizer.pipe';
 import { LazyLoaderDirective } from './directives/loader.directive';
-import { MatIconModule } from '@angular/material/icon';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
         MatToolbarModule,
         MatDialogModule,
         MatIconModule,
+        MatButtonModule,
+        MatSidenavModule,
         UrlSanitizer,
         BackdropComponent,
         NavbarComponent,
