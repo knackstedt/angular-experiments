@@ -38,9 +38,9 @@ export class NotificationService extends Subject<AppNotification> {
         })
         .finally(() => {
             if (!this.versionHasShown) {
-                setImmediate(() => {
+                setTimeout(() => {
                     this.checkVersion();
-                })
+                }, this.interval)
             }
         })
     }
