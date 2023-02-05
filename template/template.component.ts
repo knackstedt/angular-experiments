@@ -1,11 +1,11 @@
 // @ts-nocheck
 import { Component } from '@angular/core';
-import { SharedModule } from 'src/app/pages/shared.module';
+import { SharedModule } from 'src/app/shared.module';
 
 @Component({
     selector: 'app-filetemplate',
-    templateUrl: './template.component.html',
-    styleUrls: ['./template.component.scss'],
+    templateUrl: './filetemplate.component.html',
+    styleUrls: ['./filetemplate.component.scss'],
     imports: [
         SharedModule
     ],
