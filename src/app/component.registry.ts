@@ -20,6 +20,7 @@ export const RegisteredComponents: {
 }[] = [
     { id: 'Landing', load: () => import('src/app/pages/general/landing/landing.component') },
     { id: 'About', load: () => import('src/app/pages/general/about/about.component') },
+    { id: 'VSCode', load: () => import('src/app/pages/general/vscode/vscode.component') },
     { id: 'React Flow', load: () => import('src/app/pages/@react/reactflow/reactflow-wrapper') },
     { id: 'Intentionally Blank', load: () => import('src/app/pages/@framework/intentionally-blank/intentionally-blank.component'), hidden: true },
 ]

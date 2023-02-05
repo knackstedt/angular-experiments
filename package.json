@@ -26,6 +26,7 @@
     "@fontsource/roboto": "^4.5.8",
     "formiojs": "^4.14.6",
     "interactjs": "^1.10.17",
+    "monaco-editor": "^0.34.1",
     "ngx-pipes": "^3.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

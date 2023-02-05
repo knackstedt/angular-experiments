@@ -35,7 +35,12 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+                {
+                    "glob": "**/*",
+                    "input": "node_modules/monaco-editor/min/vs/",
+                    "output": "./lib/monaco/vs"
+                }
             ],
             "styles": [
               "src/styles/main.scss",
