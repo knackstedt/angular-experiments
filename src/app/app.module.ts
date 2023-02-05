@@ -14,36 +14,38 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UrlSanitizer } from './pipes/url-sanitizer.pipe';
 import { LazyLoaderDirective } from './directives/loader.directive';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [
-    RootComponent,
-    ToastComponent
-],
-imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatDialogModule,
-    UrlSanitizer,
-    BackdropComponent,
-    HttpClientModule,
-    LazyLoaderDirective,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    })
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LoaderInterceptor,
-      multi: true
-    }
-  ],
-  bootstrap: [RootComponent]
+    declarations: [
+        RootComponent,
+        ToastComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatDialogModule,
+        MatIconModule,
+        UrlSanitizer,
+        BackdropComponent,
+        HttpClientModule,
+        LazyLoaderDirective,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: environment.production,
+            // Register the ServiceWorker as soon as the application is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000'
+        })
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: LoaderInterceptor,
+            multi: true
+        }
+    ],
+    bootstrap: [RootComponent]
 })
 export class AppModule {
 }

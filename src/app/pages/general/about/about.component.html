@@ -1,10 +1,4 @@
 <div>
-    <div style="display: flex; align-items: center; margin-bottom: 20px; justify-content: center; height: 100px;">
-        <img style='height: 100%' src="assets/logo/ace-vertical-color.svg" />
-        <span style="background-color: #fff; width: 2px; height: 100%; margin: 0 20px;"></span>
-        <img style='height: 100%' src="assets/logo/esa-horizontal.png" />
-    </div>
-
     <div class="team">
         <app-user-card *ngFor="let member of team" [user]="member"></app-user-card>
     </div>

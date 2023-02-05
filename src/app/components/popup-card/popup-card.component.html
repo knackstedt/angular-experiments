@@ -1,14 +1,14 @@
-<div #container class="post" (click)="open()" [class.hide]="expand">
+<div #container style="height: 100%" (click)="open()" [class.hide]="expand">
     <ng-container *ngTemplateOutlet="preview">
     </ng-container>
 </div>
 
 <div *ngIf="expand" class="popup">
     <div class="exit" [style.opacity]="blurBackground ? 1 : 0" (click)="close()"></div>
-    <div class="details" 
-        [style.width]="popupWidth" 
+    <div class="details"
+        [style.width]="popupWidth"
         [style.height]="popupHeight"
-        [style.transform]="popupTransform" 
+        [style.transform]="popupTransform"
         [style.opacity]="animatingOut ? 0 : 1"
     >
         <ng-container *ngTemplateOutlet="details"></ng-container>

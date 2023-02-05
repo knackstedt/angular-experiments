@@ -107,6 +107,10 @@ export class VscodeComponent implements AfterViewInit, OnDestroy {
         if (this.code) {
             editor.setValue(this.code);
         }
+        else {
+            this.code = JSON.stringify(Monaco.editor, null, 4);
+            editor.setValue(this.code);
+        }
 
         editor.onDidChangeModelContent(() => {
             this.isDirty = this.editor.getValue() != this.code;

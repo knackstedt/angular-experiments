@@ -8,8 +8,6 @@ import { ToastMessage } from '../types/toast-message';
 export class ToasterService {
     toaster$ = new Subject<ToastMessage>();
 
-    constructor() { window['toaster'] = this; }
-
     private beforeInitItems = [];
     private isListenerAttached = false;
     bindListener() {
