@@ -97,12 +97,8 @@ export class LazyLoaderDirective implements OnInit, OnDestroy {
             const name = Object.keys(module)[0];
             log(`Loaded '${name}'`);
 
-            const args = this._data;
-
-            // This detection for if the component looks for a "params" object has been found adequate.
-            // if (args?._value?.__proto__?.constructor?.name == "ComponentArgs")
+            // Inject `arguments` as a JSON reference
             if (typeof this._data != "undefined" && this._data != null) {
-                instance.params = this._data;
                 instance.arguments = this._data;
             }
 

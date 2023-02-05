@@ -1,4 +1,4 @@
-import { Component, Injectable, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, Injectable, Inject, ViewEncapsulation, isDevMode } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { checkIfLazyComponentExists, LazyLoaderDirective } from '../directives/loader.directive';
@@ -50,7 +50,10 @@ export class DialogService {
             // Inject a lazy component data and args
             if (checkIfLazyComponentExists(name)) {
                 component = LazyDialogWrapperComponent;
-                data.id = name;
+                data.data = {
+                    id: name,
+                    data: data
+                }
             }
 
             if (component == null) {
@@ -64,12 +67,15 @@ export class DialogService {
             const defaults: any = {
                 maxHeight: "90vh",
                 maxWidth: "90vw",
+                minWidth: "450px",
+                minHeight: "520px",
                 closeOnNavigation: true,
                 restoreFocus: true,
             }
 
             // Apply defaults
             const opts = {...defaults, ...data};
+
 
             this.dialogRef = this.dialog.open(component as any, opts);
 
