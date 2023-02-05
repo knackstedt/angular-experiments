@@ -20,11 +20,12 @@ export const RegisteredComponents: {
     icon?: string,
     order?: number
 }[] = [
-    { id: 'Landing', load: () => import('src/app/pages/general/landing/landing.component'), icon: "home", order: 1 },
-    { id: 'The Team', load: () => import('src/app/pages/general/about/about.component'), icon: "info", order: 1000 },
-    { id: 'Holo Cards', load: () => import('src/app/pages/general/holo-cards/holo-cards.component'), icon: "collections", order: 4 },
-    { id: 'VSCode', load: () => import('src/app/pages/general/vscode/vscode.component'), icon: "code", order: 2 },
-    { id: 'React Flow', load: () => import('src/app/pages/@react/reactflow/reactflow-wrapper'), icon: "schema", order: 3 },
+    { id: 'Landing', load: () => import('src/app/pages/general/landing/landing.component'), icon: "home", order: 0 },
+    { id: 'The Team', load: () => import('src/app/pages/general/about/about.component'), icon: "info", order: 10000 },
+    { id: 'Holo Cards', load: () => import('src/app/pages/general/holo-cards/holo-cards.component'), icon: "collections", order: 9000 },
+    { id: 'Globe.GL', load: () => import('src/app/pages/general/globe-gl/globe-gl.component'), icon: "public", order: 1000 },
+    { id: 'VSCode', load: () => import('src/app/pages/general/vscode/vscode.component'), icon: "code", order: 1500 },
+    { id: 'React Flow', load: () => import('src/app/pages/@react/reactflow/reactflow-wrapper'), icon: "schema", order: 2000 },
 
     { id: 'info-dialog', load: () => import('src/app/pages/general/info-dialog/info-dialog.component'), hidden: true },
 

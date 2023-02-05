@@ -25,6 +25,7 @@
     "@fontsource/material-icons": "^4.5.4",
     "@fontsource/roboto": "^4.5.8",
     "formiojs": "^4.14.6",
+    "globe.gl": "^2.26.12",
     "interactjs": "^1.10.17",
     "monaco-editor": "^0.34.1",
     "ngx-pipes": "^3.2.0",
