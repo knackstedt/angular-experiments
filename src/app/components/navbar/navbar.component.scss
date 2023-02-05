@@ -1,0 +1,31 @@
+:host {
+    color: #fff;
+    user-select: none;
+    background-color: #212121;
+    width: 240px;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+li {
+    cursor: pointer;
+    height: 38px;
+    padding: 8px 24px;
+    border-bottom: 1px solid #414141;
+    display: flex;
+
+    &:hover {
+        background-color: #ffffff44;
+    }
+    &:last-of-type {
+        border-bottom: none;
+    }
+
+    mat-icon {
+        margin: -2px 8px -2px -2px;
+    }
+}

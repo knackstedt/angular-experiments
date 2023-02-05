@@ -15,11 +15,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { UrlSanitizer } from './pipes/url-sanitizer.pipe';
 import { LazyLoaderDirective } from './directives/loader.directive';
 import { MatIconModule } from '@angular/material/icon';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
     declarations: [
         RootComponent,
-        ToastComponent
+        ToastComponent,
     ],
     imports: [
         BrowserModule,
@@ -29,6 +30,7 @@ import { MatIconModule } from '@angular/material/icon';
         MatIconModule,
         UrlSanitizer,
         BackdropComponent,
+        NavbarComponent,
         HttpClientModule,
         LazyLoaderDirective,
         ServiceWorkerModule.register('ngsw-worker.js', {

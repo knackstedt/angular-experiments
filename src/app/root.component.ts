@@ -18,7 +18,6 @@ import { RegisteredComponents } from './component.registry';
 export class RootComponent {
     isMobile = false;
     fatalError = false;
-    readonly pages = RegisteredComponents;
 
     constructor(
         private toaster: ToasterService,

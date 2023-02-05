@@ -37,21 +37,3 @@ mat-toolbar {
     }
 }
 
-.nav {
-    color: #fff;
-    user-select: none;
-    background-color: #212121;
-
-    ul {
-        padding: 0;
-        margin: 0;
-        list-style-type: none;
-    }
-    li {
-        cursor: pointer;
-
-        &:hover {
-            background-color: #ffffff44;
-        }
-    }
-}

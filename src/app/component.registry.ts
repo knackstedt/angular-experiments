@@ -16,13 +16,16 @@
 export const RegisteredComponents: {
     id: string,
     load: () => Promise<any>,
-    hidden?: boolean
+    hidden?: boolean,
+    icon?: string,
+    order?: number
 }[] = [
-    { id: 'Landing', load: () => import('src/app/pages/general/landing/landing.component') },
-    { id: 'About', load: () => import('src/app/pages/general/about/about.component') },
-    { id: 'Holo Cards', load: () => import('src/app/pages/general/holo-cards/holo-cards.component') },
-    { id: 'VSCode', load: () => import('src/app/pages/general/vscode/vscode.component') },
-    { id: 'React Flow', load: () => import('src/app/pages/@react/reactflow/reactflow-wrapper') },
+    { id: 'Landing', load: () => import('src/app/pages/general/landing/landing.component'), icon: "home", order: 1 },
+    { id: 'About', load: () => import('src/app/pages/general/about/about.component'), icon: "info", order: 1000 },
+    { id: 'Holo Cards', load: () => import('src/app/pages/general/holo-cards/holo-cards.component'), icon: "collections", order: 4 },
+    { id: 'VSCode', load: () => import('src/app/pages/general/vscode/vscode.component'), icon: "code", order: 2 },
+    { id: 'React Flow', load: () => import('src/app/pages/@react/reactflow/reactflow-wrapper'), icon: "schema", order: 3 },
+
     { id: 'Intentionally Blank', load: () => import('src/app/pages/@framework/intentionally-blank/intentionally-blank.component'), hidden: true },
 ]
 // Read only -- this should be completely immutable.
