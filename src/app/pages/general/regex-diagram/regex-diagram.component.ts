@@ -16,7 +16,7 @@ import { SharedModule } from '../../../shared.module';
 export class RegexDiagramComponent implements AfterViewInit {
     @ViewChild('diagram', { read: ElementRef, static: false }) diagram: ElementRef;
 
-    private _regexText: string;
+    private _regexText: string = "a+b+c+";
     get regexText() { return this._regexText }
     set regexText(text: string) {
         this._regexText = text;
