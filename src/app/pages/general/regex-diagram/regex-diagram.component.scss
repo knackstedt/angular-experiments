@@ -1,0 +1,167 @@
+:host {
+    stroke: #fff;
+    fill: #777;
+    /* max-width: 100%; */
+
+    text-shadow: 0 0 2px black;
+}
+
+/* path, g, text{
+  pointer-events: none;
+}
+g .capture-group>rect{
+  pointer-events: all;
+} */
+:host ::ng-deep {
+
+    /* Overrides for custom diagram elements for SecurityPolicy page */
+    g.group.capture-group.sp_zone>rect,
+    g.group.capture-group.sp_group>rect {
+        stroke: transparent;
+        fill: transparent;
+    }
+
+    .sp_zone g.literal rect,
+    .sp_group g.literal rect {
+        stroke-width: 2px;
+        stroke: #1496ff;
+        fill: #01579b;
+    }
+
+    .sp_zone g.literal text,
+    .sp_group g.literal text {
+        fill: white;
+        font-style: italic;
+    }
+
+
+    .error-message {
+        color: #e27e8d;
+    }
+
+
+
+    path {
+        stroke-width: 2;
+        fill: rgba(0, 0, 0, 0);
+    }
+
+    text {
+        font-size: 12px;
+        font-family: 'Roboto Mono', '.SFNSText-Regular', 'SF UI Text', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
+        stroke-width: 0;
+        fill: #fff;
+        text-anchor: middle;
+    }
+
+    rect {
+        stroke-width: 3;
+        stroke: #fff;
+        fill: #1e1e1e;
+    }
+
+    g.literal>rect {
+        stroke: rgba(120, 210, 120, 0.7);
+        fill: rgba(80, 120, 80, 0.5);
+    }
+
+    g.literal>text {
+        fill: #b4dcb4;
+    }
+
+    g.character-class>rect {
+        stroke: rgba(210, 210, 120, 0.7);
+        fill: rgba(120, 120, 80, 0.5);
+    }
+
+    g.character-class>text {
+        fill: #dcdcb4;
+    }
+
+    g.character-class.invert>rect {
+        stroke: rgba(210, 120, 120, 0.7);
+        fill: rgba(120, 80, 80, 0.5);
+    }
+
+    g.character-class.invert>text {
+        fill: #dcb4b4;
+    }
+
+    g.zero-width-assertion>rect {
+        stroke: rgba(210, 120, 210, 0.7);
+        fill: rgba(120, 80, 120, 0.5);
+    }
+
+    g.zero-width-assertion>text {
+        fill: #dcb4dc;
+    }
+
+    g.group>rect {
+        stroke-width: 1;
+        fill: rgba(0, 0, 0, 0);
+    }
+
+    g.group.capture-group>rect {
+        stroke: rgba(120, 120, 210, 0.7);
+        fill: rgba(80, 80, 120, 0.1);
+    }
+
+    g.group.capture-group g.caption text {
+        fill: #b4b4dc;
+    }
+
+    g.zero-width-assertion.group>rect {
+        stroke-width: 2;
+    }
+
+    g.zero-width-assertion.positive>rect {
+        stroke: rgba(120, 210, 120, 0.7);
+        fill: rgba(120, 80, 120, 0.1);
+    }
+
+    g.zero-width-assertion.positive g.caption text {
+        fill: #b4dcb4;
+    }
+
+    g.zero-width-assertion.negative>rect {
+        stroke: rgba(210, 120, 120, 0.7);
+        fill: rgba(120, 80, 120, 0.1);
+    }
+
+    g.zero-width-assertion.negative g.caption text {
+        fill: #dcb4b4;
+    }
+
+    g.back-reference>rect {
+        stroke: rgba(120, 120, 210, 0.7);
+        fill: rgba(80, 80, 120, 0.1);
+    }
+
+    g.back-reference>text {
+        fill: #b4b4dc;
+    }
+
+    g.quantified.lazy text {
+        fill: #96c8c8;
+    }
+
+    g.quantified.greedy text {
+        fill: #c896c8;
+    }
+
+    g.quantified.possessive text {
+        fill: #c8c896;
+    }
+
+    /* Hack because firefox renders the path lines poorly */
+    @-moz-document url-prefix() {
+        path {
+            stroke-linecap: round;
+        }
+
+        g.caption>path {
+            stroke: transparent;
+        }
+    }
+}
+
