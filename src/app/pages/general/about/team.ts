@@ -3,7 +3,7 @@ export const Team = [
         name: "Andrew G. Knackstedt",
         role: "Enterprise Software Engineer",
         tagline: "Software needs to be robust and scalable in the modern world.",
-        bio: `Hi, I'm Andrew. I'm a lifelong technology enthusiast, and have passions in Archery and Axe throwing. I've been doing Software Development since 2016, with a particular interest in Web development and Optimization. One of my public side-projects is <a href='dankpods.net'>DankPods</a>.
+        bio: `Hi, I'm Andrew. I'm a lifelong technology enthusiast, and have passions in Archery and Axe throwing. I've been doing Software Development since 2016, with a particular interest in Web development and Optimization. One of my public side-projects is <a href='dankpods.net' target='_blank'>DankPods</a>.
         <br/><br/>
         I have worked at Dynatrace since I was in University, and have written (and rewritten) many of my own projects, as well as contributed to a number of GitHub projects. With a strong understanding of Web technologies and optimization of web frontends, I continue to refine my skillset and figure out better ways to create and optimize web frontends.
         `,

@@ -28,7 +28,7 @@ export class ThemeLoaderService {
     public loadTheme(theme: string) {
         this.currentTheme = theme;
 
-        const link = isDevMode() ? `/${theme}.css` : `/ui/${theme}.css`;
+        const link = `/${theme}.css`;
 
         this.loadStylesheet("theme", link);
     }
