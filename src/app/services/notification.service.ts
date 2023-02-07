@@ -26,9 +26,9 @@ export class NotificationService extends Subject<AppNotification> {
     }
 
     private checkVersion() {
-        this.fetch.get<{ version: string; }>('/ui/version.json')
+        this.fetch.get<{ version: string; }>('/version.json')
         .then(v => {
-            if (v != null && v['portal-ui'] && meta.version != v['portal-ui']) {
+            if (v != null && v['angular-experiments'] && meta.version != v['angular-experiments']) {
                 this.next({
                     version: true
                 })
