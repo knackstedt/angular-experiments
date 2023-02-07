@@ -24,6 +24,7 @@ export const RegisteredComponents: {
     { id: 'The Team', load: () => import('src/app/pages/general/about/about.component'), icon: "info", order: 10000 },
     { id: 'Holo Cards', load: () => import('src/app/pages/general/holo-cards/holo-cards.component'), icon: "collections", order: 9000 },
     { id: 'Parallax', load: () => import('src/app/pages/general/atropos/atropos.component'), icon: "vrpano", order: 8500 },
+    { id: 'Carousel', load: () => import('src/app/pages/general/carousel/carousel.component'), icon: "view_carousel", order: 8400 },
     { id: 'Globe.GL', load: () => import('src/app/pages/general/globe-gl/globe-gl.component'), icon: "public", order: 1000 },
     { id: 'Regex Diagram', load: () => import('src/app/pages/general/regex-diagram/regex-diagram.component'), icon: "data_array", order: 1200 },
     { id: 'VSCode', load: () => import('src/app/pages/general/vscode/vscode.component'), icon: "code", order: 1500 },

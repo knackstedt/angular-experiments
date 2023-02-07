@@ -1,0 +1,109 @@
+@import "swiper/scss";
+@import "swiper/scss/lazy";
+@import "swiper/scss/pagination";
+@import "swiper/scss/navigation";
+
+app-carousel {
+    height: 100%;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform-origin: center;
+    transform: translateX(0);
+    transition: transform 300ms linear;
+}
+
+.swiper-slide-active {
+    z-index: 99999;
+
+    &.swiper-slide .container {
+        opacity: 1;
+
+        .background {
+            transform: scale(1) translateY(-32px);
+            opacity: 1;
+            left: -16px;
+            right: -16px;
+            box-shadow: rgba(0, 0, 0, .7) 0px 8px 16px 0px;
+        }
+
+        .cover {
+            transform: translateY(-64px);
+        }
+
+        .prompt {
+            opacity: 1;
+        }
+
+        &.fullscreen {
+            .cover {
+                height: calc(100vh - 114px);
+                width: 100vw;
+                transform: translateY(0) !important;
+            }
+        }
+    }
+}
+
+.swiper-slide .container {
+    position: relative;
+    cursor: default;
+    opacity: .5;
+    transition: transform 300ms ease-in-out;
+
+    .background {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 32px;
+        height: 100%;
+
+        z-index: 0;
+        border-radius: 8px;
+        transform: scaleX(.9) scaleY(.8);
+        transform-origin: center top;
+        background: #181a1b;
+        transition: transform 300ms ease-in-out;
+    }
+
+    .cover {
+        transform: translateY(0);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 300ms ease-in-out;
+        border-radius: 8px;
+        // width: 30%;
+        width: 568px;
+        height: 400px;
+        overflow: hidden;
+        transform-origin: center;
+
+
+        img {
+            max-width: min(100%, 100vw);
+            max-height: min(100%, 100vh);
+            border-radius: 6px;
+        }
+    }
+
+    .prompt {
+        padding: 16px;
+        transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+        position: absolute;
+        // transform: translateY(356px);
+        transform: translateY(-48px);
+        opacity: 0;
+    }
+}

@@ -1,0 +1,29 @@
+<swiper
+    #swiper
+    style="--swiper-navigation-color: #fff;--swiper-pagination-color: #fff"
+    [speed]="600"
+    [resistanceRatio]="0"
+    [centeredSlides]="true"
+    [spaceBetween]="spaceBetween"
+    [lazy]="true"
+    [pagination]="{ clickable: true, type: 'fraction' }"
+    [navigation]="true"
+    [keyboard]="{ enabled: true }"
+    [virtual]="false"
+    (slideChange)="onSlideChanged($event)"
+    (tap)="toggleFullscreen($event)"
+    >
+    <ng-template swiperSlide *ngFor="let image of images; let i = index">
+        <div class="container">
+            <div class="background"></div>
+
+            <div class="cover">
+                <img [src]="image.url">
+            </div>
+
+            <div class="prompt">
+                <span>{{image.name}}</span>
+            </div>
+        </div>
+    </ng-template>
+</swiper>
