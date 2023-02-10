@@ -26,7 +26,7 @@
 
         <mat-sidenav-content class="content">
             <ng-container *ngFor="let page of [navigator.activePage$.value]">
-                <ng-template *ngIf="page" [lazyLoad]="page"></ng-template>
+                <lazy-loader *ngIf="page?.id" [lazy-id]="page?.id" [inputs]="page?.args"></lazy-loader>
             </ng-container>
         </mat-sidenav-content>
     </mat-sidenav-container>

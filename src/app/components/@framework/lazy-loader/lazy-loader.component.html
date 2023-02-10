@@ -1,0 +1,6 @@
+<ng-container #content></ng-container>
+
+<div class="distractor" *ngIf="isDistractorVisible" [class.destroying]="isDestroyingDistractor">
+    <mat-progress-spinner mode='indeterminate'></mat-progress-spinner>
+    <h3>Loading...</h3>
+</div>

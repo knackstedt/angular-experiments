@@ -8,7 +8,8 @@ import { NgPipesModule } from 'ngx-pipes';
 
 import { UrlSanitizer } from './pipes/url-sanitizer.pipe';
 import { ErrorPanelComponent } from './components/error-panel/error-panel.component';
-import { LazyLoaderDirective } from './directives/loader.directive';
+import { ContextMenuDirective } from './directives/context-menu.directive';
+import { LazyLoaderComponent } from './components/@framework/lazy-loader/lazy-loader.component';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { LazyLoaderDirective } from './directives/loader.directive';
         MatProgressSpinnerModule,
         MatIconModule,
         UrlSanitizer,
-        LazyLoaderDirective
+        LazyLoaderComponent,
+        ContextMenuDirective
     ],
     exports: [
         CommonModule,
@@ -28,7 +30,8 @@ import { LazyLoaderDirective } from './directives/loader.directive';
         MatIconModule,
         NgPipesModule,
         ErrorPanelComponent,
-        LazyLoaderDirective,
+        LazyLoaderComponent,
+        ContextMenuDirective
     ],
 })
 export class SharedModule { }

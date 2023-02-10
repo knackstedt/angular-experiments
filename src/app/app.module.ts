@@ -14,9 +14,9 @@ import { environment } from '../environment';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UrlSanitizer } from './pipes/url-sanitizer.pipe';
-import { LazyLoaderDirective } from './directives/loader.directive';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatButtonModule } from '@angular/material/button';
+import { LazyLoaderComponent } from './components/@framework/lazy-loader/lazy-loader.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +35,7 @@ import { MatButtonModule } from '@angular/material/button';
         BackdropComponent,
         NavbarComponent,
         HttpClientModule,
-        LazyLoaderDirective,
+        LazyLoaderComponent,
         ServiceWorkerModule.register('ngsw-worker.js', {
             enabled: environment.production,
             // Register the ServiceWorker as soon as the application is stable

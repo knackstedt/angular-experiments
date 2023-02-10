@@ -20,6 +20,7 @@ export const RegisteredComponents: {
     icon?: string,
     order?: number
 }[] = [
+    // @ae-component-inject
     { id: 'Landing', load: () => import('src/app/pages/general/landing/landing.component'), icon: "home", order: 0 },
     { id: 'The Team', load: () => import('src/app/pages/general/about/about.component'), icon: "info", order: 10000 },
     { id: 'Holo Cards', load: () => import('src/app/pages/general/holo-cards/holo-cards.component'), icon: "collections", order: 9000 },
@@ -29,6 +30,9 @@ export const RegisteredComponents: {
     { id: 'Regex Diagram', load: () => import('src/app/pages/general/regex-diagram/regex-diagram.component'), icon: "data_array", order: 1200 },
     { id: 'VSCode', load: () => import('src/app/pages/general/vscode/vscode.component'), icon: "code", order: 1500 },
     { id: 'React Flow', load: () => import('src/app/pages/@react/reactflow/reactflow-wrapper'), icon: "schema", order: 2000 },
+    { id: 'Ghost Cards', load: () => import('src/app/pages/general/ghost-cards/ghost-cards.component'), icon: "schema", order: 2000 },
+    { id: 'Lazy Test', load: () => import('src/app/pages/general/lazy-load-test/lazy-load-test.component'), icon: "science", order: 20000 },
+    { id: 'TestChild', load: () => import('./pages/general/lazy-load-test/test-child/test-child.component') },
 
     { id: 'info-dialog', load: () => import('src/app/pages/general/info-dialog/info-dialog.component'), hidden: true },
 

@@ -1,15 +1,11 @@
-import { Component, Injectable, Inject, ViewEncapsulation, isDevMode } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { checkIfLazyComponentExists, LazyLoaderDirective } from '../directives/loader.directive';
-import { DialogRef } from '@angular/cdk/dialog';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { Injectable } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ConfirmationComponent } from '../components/@framework/dialog-confirmation/confirmation-dialog.component';
 
 import interact from 'interactjs';
 import { Logger } from '../utils';
 import { LazyDialogWrapperComponent } from '../components/@framework/lazy-dialog-wrapper/lazy-dialog-wrapper.component';
+import { checkIfLazyComponentExists } from '../components/@framework/lazy-loader/lazy-loader.component';
 
 const { log, warn, err } = Logger("DialogService", "#607d8b");
 

@@ -1,0 +1,27 @@
+<h1>This page exists to test the full extent of the lazy loader</h1>
+
+<!-- <div
+    class="foo"
+    lazy-inject="TestChild"
+    [inputs]="{ prop1: value1, prop2: value2, prop5: 'asd', complex: complicated, myExternalKey: 'balloon' }"
+    [outputs]="{ prop3: onOutputFire }"
+    contextMenu
+    [contextMenuItems]="cardContextMenu"
+    >
+</div> -->
+
+<lazy-loader
+    class="foo"
+    lazy-id="TestChild"
+    [inputs]="{ prop1: value1, prop2: value2, prop5: 'asd', complex: complicated, myExternalKey: 'balloon' }"
+    [outputs]="{ prop3: onOutputFire }"
+    contextMenu
+    [contextMenuItems]="cardContextMenu"
+    >
+</lazy-loader>
+<div
+    contextMenu
+    [contextMenuItems]="cardContextMenu"
+>
+    I should have a ctx menu
+</div>

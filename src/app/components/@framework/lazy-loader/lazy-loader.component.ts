@@ -1,51 +1,52 @@
-import { Directive, Input, ViewContainerRef, OnInit, isDevMode, ComponentRef, OnDestroy, EventEmitter } from '@angular/core';
-import { RegisteredComponents } from '../component.registry';
+import { Input, ViewContainerRef, isDevMode, ComponentRef, OnDestroy, EventEmitter, Optional, ViewChild, Component, AfterViewInit, Inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { Logger } from '../utils';
-import { LazyProgressDistractorComponent } from '../components/@framework/lazy-progress-distractor/lazy-progress-distractor.component';
-import { NotFoundComponent } from '../components/@framework/not-found/not-found.component';
+import { RegisteredComponents } from 'src/app/component.registry';
+import { Logger } from 'src/app/utils';
+import { NotFoundComponent } from '../not-found/not-found.component';
+
 
 // A proxied registry that mutates reference keys
-export const ComponentRegistry =
-    RegisteredComponents
-    .map(c => ({ ...c, id: c.id.toLowerCase().replace(/[ ]/g, '') }));
+export const ComponentRegistry = RegisteredComponents.map(c => ({
+    ...c,
+    id: c.id.toLowerCase()
+        .replace(/[^a-z0-9]/g, '') // purge non-basic ASCII chars
+}));
 
 export const checkIfLazyComponentExists = (id: string) => {
     return true;
-}
+};
 
 const { log, warn, err } = Logger("LazyLoaderDirective", "#009688");
 
-@Directive({
-    selector: 'ng-template[lazyLoad]',
-    standalone: true
+@Component({
+  selector: 'lazy-loader',
+  templateUrl: './lazy-loader.component.html',
+  styleUrls: ['./lazy-loader.component.scss'],
+  imports: [
+    CommonModule,
+    MatProgressSpinnerModule
+  ],
+  standalone: true
 })
-export class LazyLoaderDirective implements OnInit, OnDestroy {
+export class LazyLoaderComponent implements OnInit, AfterViewInit, OnDestroy {
+// export class LazyLoaderDirective implements OnInit, OnDestroy {
+    @ViewChild("content", { read: ViewContainerRef }) container: ViewContainerRef;
 
     private _id: string;
     /**
      * The id of the component that will be lazy loaded
      */
-    @Input("lazyLoad") set id(id: string) {
+
+    @Input("lazy-id") set id(id: string) {
         if (this._id) {
             // clear
             this.container.remove();
         }
         this._id = id;
     };
-
-
-    private _data;
-    /**
-     * The data representing the item the context-menu was opened for.
-     */
-    @Input("lazyLoadArgs") set data(data: any) {
-        this._data = data;
-
-        if (this.instance)
-            this.instance.arguments = data;
-    };
-
 
     private _inputs: { [key: string]: any; };
     /**
@@ -60,7 +61,7 @@ export class LazyLoaderDirective implements OnInit, OnDestroy {
      * </ng-template>
      * ```
      */
-    @Input("inputs") set inputs(data: { [key: string]: any }) {
+    @Input("inputs") set inputs(data: { [key: string]: any; }) {
         let previous = this._inputs;
         this._inputs = data;
 
@@ -78,7 +79,7 @@ export class LazyLoaderDirective implements OnInit, OnDestroy {
     }
 
 
-    private outputSubscriptions: { [key: string]: Subscription} = {}
+    private outputSubscriptions: { [key: string]: Subscription; } = {};
     private _outputs: { [key: string]: Function; };
     /**
      * A map of outputs to bind from the child.
@@ -91,7 +92,7 @@ export class LazyLoaderDirective implements OnInit, OnDestroy {
      * </ng-template>
      * ```
      */
-    @Input("outputs") set outputs(data: { [key: string]: Function }) {
+    @Input("outputs") set outputs(data: { [key: string]: Function; }) {
         let previous = this._outputs;
         this._outputs = data;
 
@@ -132,20 +133,30 @@ export class LazyLoaderDirective implements OnInit, OnDestroy {
      */
     private instance: any;
 
-    /**
-     * Component ref for a loader-distractor
-     */
-    private spinner: ComponentRef<LazyProgressDistractorComponent>;
+    isDestroyingDistractor = false;
+    isDistractorVisible = true;
 
     /**
      * Subscription with true/false state on whether the distractor should be
      */
-    private spinnerSubscription: Subscription;
+    private distractorSubscription: Subscription;
 
-    constructor(private container: ViewContainerRef) { }
+    constructor(
+        @Optional() @Inject(MAT_DIALOG_DATA) public dialogArguments
+    ) { }
 
-    async ngOnInit() {
+    ngOnInit() {
         this.showSpinner();
+    }
+
+    async ngAfterViewInit() {
+        // First, check for dialog arguments
+        if (this.dialogArguments) {
+            this.inputs = this.dialogArguments.inputs;
+            this.outputs = this.dialogArguments.outputs;
+            this.id = this.dialogArguments.id;
+        }
+
 
         if (!this._id) {
             warn("No component was specified!");
@@ -172,8 +183,11 @@ export class LazyLoaderDirective implements OnInit, OnDestroy {
                 return this.loadDefault();
             }
 
+
             // Bootstrap the component into the container
             const componentRef = this.componentRef = this.container.createComponent(component);
+            this.container.insert(this.componentRef.hostView);
+
             const instance: any = this.instance = componentRef['instance'];
 
             this.bindInputs();
@@ -183,7 +197,7 @@ export class LazyLoaderDirective implements OnInit, OnDestroy {
             // the same distractor that is used on basic loading
             const isLoading$ = instance['isLoading$'] as BehaviorSubject<boolean>;
             if (isLoading$ && typeof isLoading$.subscribe == "function") {
-                this.spinnerSubscription = isLoading$.subscribe(loading => {
+                this.distractorSubscription = isLoading$.subscribe(loading => {
                     if (!loading)
                         this.clearSpinner();
                     else
@@ -193,11 +207,6 @@ export class LazyLoaderDirective implements OnInit, OnDestroy {
 
             const name = Object.keys(module)[0];
             log(`Loaded '${name}'`);
-
-            // Inject `arguments` as a JSON reference
-            if (typeof this._data != "undefined" && this._data != null) {
-                instance.arguments = this._data;
-            }
 
             if (!isLoading$)
                 this.clearSpinner();
@@ -228,7 +237,7 @@ export class LazyLoaderDirective implements OnInit, OnDestroy {
             sub.unsubscribe();
         });
 
-        this.spinnerSubscription?.unsubscribe();
+        this.distractorSubscription?.unsubscribe();
         this.componentRef?.destroy();
         this.container?.clear();
     }
@@ -281,26 +290,17 @@ export class LazyLoaderDirective implements OnInit, OnDestroy {
      * Show the progress spinner
      */
     private showSpinner() {
-        if (!this.spinner)
-            this.spinner = this.container.createComponent(LazyProgressDistractorComponent);
-
-        else if (this.spinner && this.spinner.instance.isDestroying)
-            this.spinner.instance.isDestroying = false;
+        this.isDistractorVisible = true;
     }
 
     /**
      * Clear the progress spinner
      */
     private clearSpinner() {
-        if (!this.spinner) return;
-
-        this.spinner.instance.isDestroying = true;
+        this.isDestroyingDistractor = true;
 
         setTimeout(() => {
-            if (this.spinner?.instance.isDestroying) {
-                this.spinner.destroy();
-                this.spinner = null;
-            }
+            this.isDistractorVisible = false;
         }, 300);
     }
 

@@ -12,7 +12,10 @@ const { log, warn, err } = Logger("NavigationService", "#ff9800");
 })
 export class NavigationService {
 
-    activePage$ = new BehaviorSubject<string>(null);
+    activePage$ = new BehaviorSubject<{
+        id: string,
+        args: any
+    }>(null);
 
 
     constructor(
@@ -52,28 +55,6 @@ export class NavigationService {
                 query: {}
             });
         }
-        // // Iframe Page
-        // else if (url) {
-
-        //     // We have a fully-qualified URL or a relative path.
-        //     // We will use an iframe to remotely load it.
-
-        //     // If a target is specified, we will instead open it in a new tab.
-        //     if (item.target && item.target != "") {
-        //         window.open(item.url, item.target);
-        //         return null;
-        //     }
-
-        //     const nUrl = item.url || data.url;
-        //     const targetUrl = this.substitution.resolve(nUrl);
-
-        //     log(`Navigate to iframe '${targetUrl}'`);
-        //     this.iframe$.next(targetUrl);
-
-        //     this.loadAngularPage({
-        //         target: "Frame",
-        //     });
-        // }
         // Fatal: Unknown page type
         else {
             err("Unknown navigation type: " + JSON.stringify(page));
@@ -87,7 +68,6 @@ export class NavigationService {
         return new Promise<void>((res, rej) => {
             // Interim change to the intentionally blank component
             // to force re-initialization of the loaded component.
-            this.activePage$.next('IntentionallyBlank');
             setTimeout(() => {
                 // Rip off leading slashes
                 if (target.startsWith('/'))
@@ -98,7 +78,10 @@ export class NavigationService {
 
                 updateUrl(target, query);
 
-                this.activePage$.next(target);
+                this.activePage$.next({
+                    id: target,
+                    args: query
+                });
             }, 10)
         })
     }

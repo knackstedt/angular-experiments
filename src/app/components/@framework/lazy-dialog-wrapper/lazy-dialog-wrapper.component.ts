@@ -1,7 +1,6 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { LazyLoaderDirective } from 'src/app/directives/loader.directive';
 import { SharedModule } from '../../../shared.module';
 
 @Component({
@@ -9,8 +8,7 @@ import { SharedModule } from '../../../shared.module';
     templateUrl: './lazy-dialog-wrapper.component.html',
     standalone: true,
     imports: [
-        SharedModule,
-        LazyLoaderDirective,
+        SharedModule
     ]
 })
 export class LazyDialogWrapperComponent {

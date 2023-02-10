@@ -69,7 +69,8 @@ if (process.argv) {
         let injected = false;
         for (let i = 0; i < lines.length; i++) {
             let line = lines[i];
-            if (/export const RegisteredComponents = \[/.test(line)) {
+            // Search for this string and inject a new entry below it.
+            if (/\/\/ @ae-component-inject/.test(line)) {
                 lines.splice(i + 1, 0, newRoute);
                 injected = true;
                 break;
