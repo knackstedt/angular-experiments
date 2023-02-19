@@ -6,8 +6,8 @@
       "name": "Start",
       "type": "pwa-chrome",
       "request": "launch",
-      "preLaunchTask": "npm: start",
-      "url": "https://localhost:4200/"
+      "preLaunchTask": "npm: dev",
+      "url": "https://localhost:4400/"
     }
   ]
 }
