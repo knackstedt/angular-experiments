@@ -209,7 +209,7 @@ export class LazyLoaderComponent implements OnInit, AfterViewInit, OnDestroy {
             this.id = this.dialogArguments.id;
         }
 
-        // this.showSpinner();
+        this.showSpinner();
 
         if (!this._id) {
             warn("No component was specified!");
