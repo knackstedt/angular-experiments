@@ -1,8 +1,6 @@
-import { Directive, Input, ViewContainerRef, ElementRef, HostListener, Inject, Component, ViewEncapsulation } from '@angular/core';
+import { Directive, Input, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { KeyCommand } from '../services/keyboard.service';
-import { CommonModule } from '@angular/common';
 import { ContextMenuComponent } from '../components/@framework/context-menu/context-menu.component';
 
 export type ContextMenuItem<T = any> = {
@@ -141,12 +139,12 @@ export class ContextMenuDirective {
 }
 
 
-// Helper to open the context menu without using the directive.
-export const openContextMenu = (dialog: MatDialog, menuItems: ContextMenuItem[], data: any, evt: PointerEvent) => {
-    const ctx = new ContextMenuDirective(dialog);
-    ctx.data = data;
-    ctx.menuItems = menuItems;
-    ctx.onContextMenu(evt);
+// // Helper to open the context menu without using the directive.
+// export const openContextMenu = (dialog: MatDialog, menuItems: ContextMenuItem[], data: any, evt: PointerEvent) => {
+//     const ctx = new ContextMenuDirective(dialog);
+//     ctx.data = data;
+//     ctx.menuItems = menuItems;
+//     ctx.onContextMenu(evt);
 
-    // TODO: is this disposed properly?
-}
+//     // TODO: is this disposed properly?
+// }

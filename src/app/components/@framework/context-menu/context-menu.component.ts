@@ -1,14 +1,14 @@
 import { Component, HostListener, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ContextMenuItem } from 'src/app/directives/context-menu.directive';
-import { SharedModule } from '../../../shared.module';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-context-menu',
     templateUrl: './context-menu.component.html',
     styleUrls: ['./context-menu.component.scss'],
     imports: [
-        SharedModule
+        CommonModule
     ],
     standalone: true,
     encapsulation: ViewEncapsulation.None
