@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ContextMenuItem } from 'src/app/directives/context-menu.directive';
 import { SharedModule } from 'src/app/shared.module';
 import { LazyLoaderComponent } from '../../../components/@framework/lazy-loader/lazy-loader.component';
+import { OverlayWrapperComponent } from '../../../components/overlay-wrapper/overlay-wrapper.component';
 
 @Component({
     selector: 'app-lazy-load-test',
@@ -9,7 +10,8 @@ import { LazyLoaderComponent } from '../../../components/@framework/lazy-loader/
     styleUrls: ['./lazy-load-test.component.scss'],
     imports: [
         SharedModule,
-        LazyLoaderComponent
+        LazyLoaderComponent,
+        OverlayWrapperComponent
     ],
     standalone: true
 })
@@ -53,4 +55,8 @@ export class LazyLoadTestComponent {
             },
         }
     ];
+
+    onChildButtonClicked(evt: any) {
+        console.log(this, evt);
+    }
 }

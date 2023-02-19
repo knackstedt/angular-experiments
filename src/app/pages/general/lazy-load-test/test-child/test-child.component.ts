@@ -34,6 +34,8 @@ export class TestChildComponent {
 
     @Output() prop3 = new EventEmitter();
 
+    @Output() buttonClicked = new EventEmitter();
+
 
     @Input() value: string;
     @Output() valueChange = new EventEmitter<string>();
