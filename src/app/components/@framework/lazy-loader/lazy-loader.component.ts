@@ -1,12 +1,25 @@
-import { Input, ViewContainerRef, isDevMode, ComponentRef, OnDestroy, EventEmitter, Optional, ViewChild, Component, AfterViewInit, Inject, OnInit } from '@angular/core';
+import { Input, ViewContainerRef, isDevMode, ComponentRef, OnDestroy, EventEmitter, Optional, ViewChild, Component, AfterViewInit, Inject, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { RegisteredComponents } from 'src/app/component.registry';
+import { DialogRef } from '@angular/cdk/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { Logger } from 'src/app/utils';
-import { NotFoundComponent } from '../not-found/not-found.component';
 
+/**
+ * ! Here be dragons.
+ * Only the bravest of Adventurers can survive the battles below,
+ * and they must be trained and ready for the gruelling journey ahead.
+ * Many a soul has tried to best these Dragons, yet only one has
+ * succeeded since our founding.
+ *
+ * TL;DR -- Don't mess with this unless you know what you're doing.
+ *     This is central to a ton of moving parts -- breaking it will
+ *     cause more collateral damage than you may realize.
+ */
 
 // A proxied registry that mutates reference keys
 export const ComponentRegistry = RegisteredComponents.map(c => ({
@@ -19,20 +32,21 @@ export const checkIfLazyComponentExists = (id: string) => {
     return true;
 };
 
-const { log, warn, err } = Logger("LazyLoaderDirective", "#009688");
+const { log, warn, err } = Logger("LazyLoader", "#009688");
 
 @Component({
-  selector: 'lazy-loader',
-  templateUrl: './lazy-loader.component.html',
-  styleUrls: ['./lazy-loader.component.scss'],
-  imports: [
-    CommonModule,
-    MatProgressSpinnerModule
-  ],
-  standalone: true
+    selector: 'lazy-loader',
+    templateUrl: './lazy-loader.component.html',
+    styleUrls: ['./lazy-loader.component.scss'],
+    imports: [
+        CommonModule,
+        MatProgressSpinnerModule,
+        MatIconModule,
+        MatButtonModule
+    ],
+    standalone: true
 })
 export class LazyLoaderComponent implements OnInit, AfterViewInit, OnDestroy {
-// export class LazyLoaderDirective implements OnInit, OnDestroy {
     @ViewChild("content", { read: ViewContainerRef }) container: ViewContainerRef;
 
     private _id: string;
@@ -40,7 +54,7 @@ export class LazyLoaderComponent implements OnInit, AfterViewInit, OnDestroy {
      * The id of the component that will be lazy loaded
      */
 
-    @Input("lazy-id") set id(id: string) {
+    @Input("component") set id(id: string) {
         if (this._id) {
             // clear
             this.container.remove();
@@ -54,16 +68,27 @@ export class LazyLoaderComponent implements OnInit, AfterViewInit, OnDestroy {
      * Supports change detection. (May fail on deep JSON changes)
      *
      * ```html
-     * <ng-template
-     *       lazyLoad="MyLazyComponent"
-     *       [inputs]="{ prop1: true, prop2: false, complex: { a: true, b: 0 } }"
+     * <lazy-loader
+     *     component="MyLazyComponent"
+     *     [inputs]="{
+     *        prop1: true,
+     *        prop2: false,
+     *        complex: {
+     *            a: true,
+     *            b: 0
+     *        }
+     *     }"
      * >
-     * </ng-template>
+     * </lazy-loader>
      * ```
      */
     @Input("inputs") set inputs(data: { [key: string]: any; }) {
+        if (data == undefined) return;
+
         let previous = this._inputs;
         this._inputs = data;
+        if (data == undefined)
+            console.trace(data);
 
         if (this.component) {
             const { inputs } = this.component.ɵcmp;
@@ -85,11 +110,13 @@ export class LazyLoaderComponent implements OnInit, AfterViewInit, OnDestroy {
      * A map of outputs to bind from the child.
      * Should support change detection.
      * ```html
-     * <ng-template
-     *       lazyLoad="MyLazyComponent"
-     *       [outputs]="{ prop3: onOutputFire }"
+     * <lazy-loader
+     *     component="MyLazyComponent"
+     *     [outputs]="{
+     *         prop3: onOutputFire
+     *     }"
      * >
-     * </ng-template>
+     * </lazy-loader>
      * ```
      */
     @Input("outputs") set outputs(data: { [key: string]: Function; }) {
@@ -111,6 +138,28 @@ export class LazyLoaderComponent implements OnInit, AfterViewInit, OnDestroy {
             this.bindOutputs();
         }
     }
+
+    /**
+     * Context that the outputs execute in
+     *
+     * TODO: resolve context binding loss
+     */
+    @Input("parent") parentContext: Object;
+
+
+    /**
+     * Emits errors encountered when loading components
+     */
+    @Output() componentLoadError = new EventEmitter();
+
+    /**
+     * Emits when the component is fully constructed
+     * and had it's inputs and outputs bound
+     * > before `OnInit`
+     *
+     * Returns the active class instance of the lazy-loaded component
+     */
+    @Output() componentLoaded = new EventEmitter();
 
 
     /**
@@ -142,6 +191,8 @@ export class LazyLoaderComponent implements OnInit, AfterViewInit, OnDestroy {
     private distractorSubscription: Subscription;
 
     constructor(
+        @Optional() private viewContainerRef: ViewContainerRef,
+        @Optional() public dialog: DialogRef,
         @Optional() @Inject(MAT_DIALOG_DATA) public dialogArguments
     ) { }
 
@@ -150,13 +201,15 @@ export class LazyLoaderComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     async ngAfterViewInit() {
+
         // First, check for dialog arguments
         if (this.dialogArguments) {
-            this.inputs = this.dialogArguments.inputs;
-            this.outputs = this.dialogArguments.outputs;
+            this.inputs = this.dialogArguments.data?.inputs || this.dialogArguments.data;
+            this.outputs = this.dialogArguments.data?.outputs;
             this.id = this.dialogArguments.id;
         }
 
+        // this.showSpinner();
 
         if (!this._id) {
             warn("No component was specified!");
@@ -164,7 +217,7 @@ export class LazyLoaderComponent implements OnInit, AfterViewInit, OnDestroy {
         }
 
         try {
-            const entry = ComponentRegistry.find(c => c.id == this._id.toLowerCase());
+            const entry = ComponentRegistry.find(c => c.id == this._id.trim().replace(/[\-_]/g, '').toLowerCase());
             if (!entry) {
                 err(`Failed to find Component '${this._id}' in registry!`);
                 return this.loadDefault();
@@ -192,6 +245,8 @@ export class LazyLoaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
             this.bindInputs();
             this.bindOutputs();
+
+            this.componentLoaded.next(instance);
 
             // Look for an observable called isLoading$ that will make us show/hide
             // the same distractor that is used on basic loading
@@ -280,7 +335,12 @@ export class LazyLoaderComponent implements OnInit, AfterViewInit, OnDestroy {
         newOutputs.forEach(([parentKey, childKey]: [string, string]) => {
             if (this._outputs.hasOwnProperty(parentKey)) {
                 const target: EventEmitter<unknown> = this.instance[childKey];
-                const sub = target.subscribe((...args) => this._outputs[parentKey](...args));
+                const outputs = this._outputs;
+
+                // Angular folks, stop making this so difficult.
+                const ctx = this.viewContainerRef['_hostLView'][8];
+                const sub = target.subscribe(outputs[parentKey].bind(ctx)); // Subscription
+
                 this.outputSubscriptions[parentKey] = sub;
             }
         });
@@ -308,7 +368,8 @@ export class LazyLoaderComponent implements OnInit, AfterViewInit, OnDestroy {
      * Load the "Default" component (404) screen normally.
      */
     private loadDefault() {
-        this.container.createComponent(NotFoundComponent);
+        // TODO: pass through a not found // error component
+        // this.container.createComponent(NotFoundComponent);
         this.clearSpinner();
     }
 }
