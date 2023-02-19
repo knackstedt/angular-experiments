@@ -1,6 +1,6 @@
 import { Component, AfterViewInit, ViewContainerRef, HostListener } from '@angular/core';
 import { SharedModule } from 'src/app/shared.module';
-import Globe from 'globe.gl/dist/globe.gl.min.js';
+import Globe, { GlobeInstance } from 'globe.gl';///dist/globe.gl.min.js';
 import cablesGeo from "./data.json";
 
 @Component({
@@ -15,7 +15,7 @@ import cablesGeo from "./data.json";
 export class GlobeGlComponent implements AfterViewInit {
     constructor(private container: ViewContainerRef) { }
 
-    private globe: Globe;
+    private globe: GlobeInstance;
 
     ngAfterViewInit() {
         const globe = this.globe = Globe()(this.container.element.nativeElement)

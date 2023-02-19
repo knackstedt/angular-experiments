@@ -30,7 +30,7 @@ export const RegisteredComponents: {
     { id: 'Regex Diagram', load: () => import('src/app/pages/general/regex-diagram/regex-diagram.component'), icon: "data_array", order: 1200 },
     { id: 'VSCode', load: () => import('src/app/pages/general/vscode/vscode.component'), icon: "code", order: 1500 },
     { id: 'React Flow', load: () => import('src/app/pages/@react/reactflow/reactflow-wrapper'), icon: "schema", order: 2000 },
-    { id: 'Ghost Cards', load: () => import('src/app/pages/general/ghost-cards/ghost-cards.component'), icon: "schema", order: 2000 },
+    // { id: 'Ghost Cards', load: () => import('src/app/pages/general/ghost-cards/ghost-cards.component'), icon: "schema", order: 2000 },
     { id: 'Lazy Test', load: () => import('src/app/pages/general/lazy-load-test/lazy-load-test.component'), icon: "science", order: 20000 },
     { id: 'TestChild', load: () => import('./pages/general/lazy-load-test/test-child/test-child.component') },
 
