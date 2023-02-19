@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Fetch } from './fetch.service';
 import { ToasterService } from './toaster.service';
-import { Logger, updateUrl } from '../utils';
+import { Logger } from '../utils';
 import { BehaviorSubject, startWith } from 'rxjs';
 
 const { log, warn, err } = Logger("NavigationService", "#ff9800");
@@ -24,65 +24,115 @@ export class NavigationService {
     ) {
         // Cannot use hostlistener for some reason
         window.onhashchange = this.restoreNavigation.bind(this);
+        window.onpopstate = this.restoreNavigation.bind(this);
 
         this.restoreNavigation();
     }
 
-    private restoreNavigation() {
+    private restoreNavigation(evt?: PopStateEvent | HashChangeEvent) {
         if ([null, "", "#", '/#', '/#/'].includes(location.hash))
             return this.loadHomepage();
 
-        const hash = location.hash.split("?")[0];
-        this.onMenuItemNavigate(hash);
-    }
+        if (evt?.type == "popstate") {
+            // window.history.pushState(location.hash, null, location.hash);
+            const event = evt as PopStateEvent;
+            event.preventDefault();
+            const hash = location.hash.split("?")[0];
+            this.loadRootPage(hash);
 
-    public async onMenuItemNavigate(page: string, navigate = true): Promise<void> {
-        // We just wanted to update the selected menu item.
-        if (navigate == false)
             return;
-
-        let url: URL;
-        // The "new URL" constructor explodes if the url isn't valid.
-        try { url = new URL(page) } catch (ex) { }
-
-        // Angular Page
-        if (/^\#/.test(page)) {
-            // Check if we need to load a local Angular component. (begins with #)
-            const next = page.slice(1);
-
-            this.loadAngularPage({
-                target: next,
-                query: {}
-            });
         }
-        // Fatal: Unknown page type
-        else {
-            err("Unknown navigation type: " + JSON.stringify(page));
+        // else {
 
-            // The URL is not valid. (we don't know what to do with it)
-            this.toaster.warn("Failed navigation", "The provided navigation action failed to activate.");
+        // }
+
+
+
+        const hash = location.hash.split("?")[0];
+        this.loadRootPage(hash);
+    }
+
+    /**
+     * Helper to update the page URL.
+     * @param page component page ID to load.
+     * @param data string or JSON data for query params.
+     */
+    private updateUrl(page: string, data: string | string[][] | Record<string, string | number> | URLSearchParams, replace = false) {
+        const oldHash = location.hash.split('?')[0];
+
+        if (!page)
+            page = oldHash.split('/')[1];
+
+        const hash = `#/${page}`;
+
+        const qstring = location.hash.split('?')[1];
+
+        const query = new URLSearchParams(data as any);
+        const prevParams = new URLSearchParams(qstring);
+
+        // If the hash is the same, retain params.
+        if (hash == oldHash) {
+            // @ts-ignore
+            for (const [key, value] of prevParams.entries()) {
+                if (!query.has(key))
+                    query.set(key, prevParams.get(key));
+            }
+        }
+
+        // @ts-ignore
+        for (const [key, val] of query.entries()) {
+            if (
+                val == null ||
+                val == undefined ||
+                val == '' ||
+                val == 'null' ||
+                Number.isNaN(val) ||
+                val == 'NaN'
+            )
+                query.delete(key);
+        }
+
+        // console.log(hash);
+        if (!(hash.toLowerCase() == "#/frame" || hash.toLowerCase() == "#/powerbi") || data['id'] == -1)
+            query.delete('id');
+
+        if (replace) {
+            window.history.replaceState(data, '', hash + '?' + query.toString());
+        }
+        else {
+            window.history.pushState(data, '', hash + '?' + query.toString());
         }
     }
 
-    private loadAngularPage({target, query = {}}) {
+    // Directly triggers a page load for the root area
+    public async loadRootPage(page: string): Promise<void> {
+        if (/^\#/.test(page))
+            page = "#" + page;
+
+        let next = page.slice(1);
+
+        if (next.startsWith('/'))
+            next = next.slice(1);
+
+        // Wipe out stray space symbols
+        next = next.replace(/[ ]|#\//g, '');
+
+        this.updateUrl(next, {
+            data: JSON.stringify({})
+        });
+
+        this.activePage$.next({
+            id: next,
+            args: {}
+        });
+
         return new Promise<void>((res, rej) => {
             // Interim change to the intentionally blank component
             // to force re-initialization of the loaded component.
             setTimeout(() => {
                 // Rip off leading slashes
-                if (target.startsWith('/'))
-                    target = target.slice(1);
 
-                // Wipe out stray space symbols
-                target = target.replace(/[ ]/g, '');
-
-                updateUrl(target, query);
-
-                this.activePage$.next({
-                    id: target,
-                    args: query
-                });
-            }, 10)
+            }, 10);
         })
     }
 
@@ -94,10 +144,10 @@ export class NavigationService {
 
     // Trigger loading of the homepage.
     public loadHomepage() {
-        this.onMenuItemNavigate("#/Landing");
+        this.loadRootPage("#/Landing");
     }
 
     public loadAboutUs() {
-        this.onMenuItemNavigate("#/About");
+        this.loadRootPage("#/About");
     }
 }

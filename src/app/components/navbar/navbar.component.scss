@@ -3,6 +3,7 @@
     user-select: none;
     background-color: #212121;
     width: 240px;
+    flex-shrink: 0;
 }
 
 ul {
@@ -29,3 +30,4 @@ li {
         margin: -2px 8px -2px -2px;
     }
 }
+

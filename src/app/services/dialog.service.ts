@@ -4,15 +4,16 @@ import { ConfirmationComponent } from '../components/@framework/dialog-confirmat
 
 import interact from 'interactjs';
 import { Logger } from '../utils';
-import { LazyDialogWrapperComponent } from '../components/@framework/lazy-dialog-wrapper/lazy-dialog-wrapper.component';
-import { checkIfLazyComponentExists } from '../components/@framework/lazy-loader/lazy-loader.component';
+import { checkIfLazyComponentExists, LazyLoaderComponent } from '../components/@framework/lazy-loader/lazy-loader.component';
 
 const { log, warn, err } = Logger("DialogService", "#607d8b");
 
-export type DialogOptions = Partial<MatDialogConfig<any> & {
+export type DialogOptions = Partial<Omit<MatDialogConfig<any>, 'data'> & {
     isResizable: boolean,
     icon: string,
-    title: string
+    title: string,
+    inputs: {[key: string]: any},
+    outputs: {[key: string]: Function}
 }>;
 
 @Injectable({
@@ -24,8 +25,7 @@ export class DialogService {
 
     constructor(
         private dialog: MatDialog,
-    ) {
-    }
+    ) { }
 
     /**
      * Open a dialog item.
@@ -41,23 +41,8 @@ export class DialogService {
         log("Open dialog " + name, data);
 
         return new Promise((resolve, reject) => {
-            let component;
 
-            // Inject a lazy component data and args
-            if (checkIfLazyComponentExists(name)) {
-                component = LazyDialogWrapperComponent;
-                data.data = {
-                    id: name,
-                    data: data
-                }
-            }
-
-            if (component == null) {
-                const err = new Error("Tried to open missing dialog " + name);
-                console.error(err);
-                reject(err);
-                return;
-            }
+            if (!checkIfLazyComponentExists(name)) return;
 
             // default options. can be overridden.
             const defaults: any = {
@@ -70,10 +55,17 @@ export class DialogService {
             }
 
             // Apply defaults
-            const opts = {...defaults, ...data};
+            const opts = {
+                ...defaults,
+                ...data,
+                data: {
+                    id: name,
+                    inputs: data.inputs,
+                    outputs: data.outputs
+                }
+            };
 
-
-            this.dialogRef = this.dialog.open(component as any, opts);
+            this.dialogRef = this.dialog.open(LazyLoaderComponent, opts);
 
             this.dialogRef.afterClosed().subscribe(result => {
                 log("Dialog closed " + name, result);

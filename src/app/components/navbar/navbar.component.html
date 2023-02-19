@@ -1,6 +1,6 @@
 <ul>
     <ng-container *ngFor="let page of pages">
-        <li *ngIf="!page.hidden" (click)="navigator.onMenuItemNavigate('#/' + page.id)">
+        <li *ngIf="!page.hidden" (click)="navigator.loadRootPage('#/' + page.id)">
             <mat-icon *ngIf="page.icon" [fontIcon]="page.icon"></mat-icon>
             {{page.id}}
         </li>
