@@ -42,6 +42,7 @@
     "@angular-devkit/build-angular": "^15.1.2",
     "@angular/cli": "^15.1.2",
     "@angular/compiler-cli": "^15.1.1",
+    "@types/gsap": "^3.0.0",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
