@@ -9,7 +9,7 @@ import { NgPipesModule } from 'ngx-pipes';
 import { UrlSanitizer } from './pipes/url-sanitizer.pipe';
 import { ErrorPanelComponent } from './components/error-panel/error-panel.component';
 import { ContextMenuDirective } from './directives/context-menu.directive';
-import { LazyLoaderComponent } from './components/@framework/lazy-loader/lazy-loader.component';
+import { NgxLazyLoaderComponent } from '@dotglitch/ngx-lazy-loader';
 
 @NgModule({
     declarations: [
@@ -20,7 +20,7 @@ import { LazyLoaderComponent } from './components/@framework/lazy-loader/lazy-lo
         MatProgressSpinnerModule,
         MatIconModule,
         UrlSanitizer,
-        LazyLoaderComponent,
+        NgxLazyLoaderComponent,
         ContextMenuDirective
     ],
     exports: [
@@ -30,7 +30,6 @@ import { LazyLoaderComponent } from './components/@framework/lazy-loader/lazy-lo
         MatIconModule,
         NgPipesModule,
         ErrorPanelComponent,
-        LazyLoaderComponent,
         ContextMenuDirective
     ],
 })

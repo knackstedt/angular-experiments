@@ -27,6 +27,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "sourceMap": true,
+            "preserveSymlinks": true,
             "allowedCommonJsDependencies": [
                 "dompurify",
                 "formiojs",
@@ -43,17 +44,7 @@
                 }
             ],
             "styles": [
-              "src/styles/main.scss",
-              {
-                "input": "src/styles/themes/dark.scss",
-                "bundleName": "dark",
-                "inject": false
-              },
-              {
-                "input": "src/styles/themes/light.scss",
-                "bundleName": "light",
-                "inject": false
-              }
+              "src/styles/main.scss"
             ],
             "scripts": [],
             "serviceWorker": true,
@@ -76,6 +67,7 @@
               "outputHashing": "all"
             },
             "development": {
+              "preserveSymlinks": true,
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,

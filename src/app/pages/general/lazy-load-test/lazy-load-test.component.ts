@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ContextMenuItem } from 'src/app/directives/context-menu.directive';
 import { SharedModule } from 'src/app/shared.module';
-import { LazyLoaderComponent } from '../../../components/@framework/lazy-loader/lazy-loader.component';
 import { OverlayWrapperComponent } from '../../../components/overlay-wrapper/overlay-wrapper.component';
+import { NgxLazyLoaderComponent } from '@dotglitch/ngx-lazy-loader';
 
 @Component({
     selector: 'app-lazy-load-test',
@@ -10,8 +10,8 @@ import { OverlayWrapperComponent } from '../../../components/overlay-wrapper/ove
     styleUrls: ['./lazy-load-test.component.scss'],
     imports: [
         SharedModule,
-        LazyLoaderComponent,
-        OverlayWrapperComponent
+        OverlayWrapperComponent,
+        NgxLazyLoaderComponent
     ],
     standalone: true
 })

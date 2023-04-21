@@ -1,7 +1,4 @@
-<!-- <h1>This page exists to test the full extent of the lazy loader</h1> -->
-
-
-<lazy-loader
+<ngx-lazy-loader
     class="foo"
     component="TestChild"
     [inputs]="{
@@ -15,16 +12,4 @@
         prop3: onOutputFire,
         buttonClicked: onChildButtonClicked
     }"
-    contextMenu
-    [contextMenuItems]="cardContextMenu"
-    >
-</lazy-loader>
-<div
-    contextMenu
-    [contextMenuItems]="cardContextMenu"
->
-    I should have a ctx menu
-</div>
-
-
-<!-- <app-overlay-wrapper></app-overlay-wrapper> -->
+/>

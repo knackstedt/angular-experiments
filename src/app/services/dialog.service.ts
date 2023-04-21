@@ -4,7 +4,7 @@ import { ConfirmationComponent } from '../components/@framework/dialog-confirmat
 
 import interact from 'interactjs';
 import { Logger } from '../utils';
-import { checkIfLazyComponentExists, LazyLoaderComponent } from '../components/@framework/lazy-loader/lazy-loader.component';
+import { NgxLazyLoaderService, NgxLazyLoaderComponent } from '@dotglitch/ngx-lazy-loader';
 
 const { log, warn, err } = Logger("DialogService", "#607d8b");
 
@@ -25,6 +25,7 @@ export class DialogService {
 
     constructor(
         private dialog: MatDialog,
+        private lazyLoader: NgxLazyLoaderService
     ) { }
 
     /**
@@ -42,7 +43,7 @@ export class DialogService {
 
         return new Promise((resolve, reject) => {
 
-            if (!checkIfLazyComponentExists(name)) return;
+            if (!this.lazyLoader.isComponentRegistered(name)) return;
 
             // default options. can be overridden.
             const defaults: any = {
@@ -65,7 +66,7 @@ export class DialogService {
                 }
             };
 
-            this.dialogRef = this.dialog.open(LazyLoaderComponent, opts);
+            this.dialogRef = this.dialog.open(NgxLazyLoaderComponent, opts);
 
             this.dialogRef.afterClosed().subscribe(result => {
                 log("Dialog closed " + name, result);

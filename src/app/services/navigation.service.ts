@@ -115,12 +115,13 @@ export class NavigationService {
             next = next.slice(1);
 
         // Wipe out stray space symbols
-        next = next.replace(/[ ]|#\//g, '');
+        next = next.replace(/[ ]/g, '-').replace(/|#\//g, '');
 
         this.updateUrl(next, {
             data: JSON.stringify({})
         });
 
+        console.trace(next);
         this.activePage$.next({
             id: next,
             args: {}

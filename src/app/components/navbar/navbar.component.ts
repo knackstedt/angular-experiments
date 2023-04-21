@@ -14,10 +14,9 @@ import { NavigationService } from '../../services/navigation.service';
 })
 export class NavbarComponent {
 
-
     readonly pages = RegisteredComponents
-        .filter(c => !c.hidden)
-        .sort((a, b) => (a.order || 0) - (b.order || 0));
+        .filter(c => !c['hidden'])
+        .sort((a, b) => (a['order'] || 0) - (b['order'] || 0));
 
     constructor(public navigator: NavigationService) { }
 

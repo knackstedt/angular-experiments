@@ -16,7 +16,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { UrlSanitizer } from './pipes/url-sanitizer.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatButtonModule } from '@angular/material/button';
-import { LazyLoaderComponent } from './components/@framework/lazy-loader/lazy-loader.component';
+import { ComponentResolveStrategy, NgxLazyLoaderModule } from '@dotglitch/ngx-lazy-loader';
+import { RegisteredComponents } from 'src/app/component.registry';
+import { NotFoundComponent } from 'src/app/components/@framework/not-found/not-found.component';
+import { LazyProgressDistractorComponent } from './components/@framework/lazy-progress-distractor/lazy-progress-distractor.component';
+
 
 @NgModule({
     declarations: [
@@ -35,12 +39,17 @@ import { LazyLoaderComponent } from './components/@framework/lazy-loader/lazy-lo
         BackdropComponent,
         NavbarComponent,
         HttpClientModule,
-        LazyLoaderComponent,
         ServiceWorkerModule.register('ngsw-worker.js', {
             enabled: environment.production,
             // Register the ServiceWorker as soon as the application is stable
             // or after 30 seconds (whichever comes first).
             registrationStrategy: 'registerWhenStable:30000'
+        }),
+        NgxLazyLoaderModule.forRoot({
+            entries: RegisteredComponents,
+            componentResolveStrategy: ComponentResolveStrategy.PickFirst,
+            notFoundComponent: NotFoundComponent,
+            loaderDistractorComponent: LazyProgressDistractorComponent
         })
     ],
     providers: [
