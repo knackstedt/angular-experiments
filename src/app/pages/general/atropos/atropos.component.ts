@@ -1,14 +1,10 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, OnDestroy, ViewEncapsulation } from '@angular/core';
 import Atropos, { AtroposInstance } from 'atropos';
-import { SharedModule } from 'src/app/shared.module';
 
 @Component({
     selector: 'app-atropos',
     templateUrl: './atropos.component.html',
     styleUrls: ['./atropos.component.scss'],
-    imports: [
-        SharedModule
-    ],
     standalone: true,
     encapsulation: ViewEncapsulation.None
 })

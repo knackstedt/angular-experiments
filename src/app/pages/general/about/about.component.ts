@@ -1,7 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { UserCard, UserCardComponent } from '../../../components/user-card/user-card.component';
-import { SharedModule } from '../../../shared.module';
 import { Team } from './team';
+import { NgForOf } from '@angular/common';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { Team } from './team';
     templateUrl: './about.component.html',
     styleUrls: ['./about.component.scss'],
     imports: [
-        SharedModule,
+        NgForOf,
         UserCardComponent
     ],
     standalone: true

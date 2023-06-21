@@ -1,5 +1,4 @@
 import { Component, AfterViewInit, ViewContainerRef, HostListener } from '@angular/core';
-import { SharedModule } from 'src/app/shared.module';
 import Globe, { GlobeInstance } from 'globe.gl';///dist/globe.gl.min.js';
 import cablesGeo from "./data.json";
 
@@ -7,9 +6,6 @@ import cablesGeo from "./data.json";
     selector: 'app-globe-gl',
     templateUrl: './globe-gl.component.html',
     styleUrls: ['./globe-gl.component.scss'],
-    imports: [
-        SharedModule
-    ],
     standalone: true
 })
 export class GlobeGlComponent implements AfterViewInit {

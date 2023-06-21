@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { HoloCardComponent } from 'src/app/components/holo-card/holo-card.component';
-import { SharedModule } from 'src/app/shared.module';
 import data from "./cards.json";
+import { NgForOf } from '@angular/common';
 
 @Component({
     selector: 'app-holo-cards',
     templateUrl: './holo-cards.component.html',
     styleUrls: ['./holo-cards.component.scss'],
     imports: [
-        SharedModule,
+        NgForOf,
         HoloCardComponent
     ],
     standalone: true

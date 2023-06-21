@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { SharedModule } from '../../shared.module';
+import { NgIf } from '@angular/common';
+import { Component, Input } from '@angular/core';
 import { PopupCardComponent } from 'src/app/components/popup-card/popup-card.component';
 
 export type UserCard = {
@@ -20,7 +20,7 @@ export type UserCard = {
     templateUrl: './user-card.component.html',
     styleUrls: ['./user-card.component.scss'],
     imports: [
-        SharedModule,
+        NgIf,
         PopupCardComponent
     ],
     standalone: true

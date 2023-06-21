@@ -1,12 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { SharedModule } from 'src/app/shared.module';
 
 @Component({
     selector: 'app-test-child',
     templateUrl: './test-child.component.html',
     styleUrls: ['./test-child.component.scss'],
     imports: [
-        SharedModule
     ],
     standalone: true
 })

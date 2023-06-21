@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
-import { ContextMenuItem } from 'src/app/directives/context-menu.directive';
-import { SharedModule } from 'src/app/shared.module';
 import { OverlayWrapperComponent } from '../../../components/overlay-wrapper/overlay-wrapper.component';
 import { NgxLazyLoaderComponent } from '@dotglitch/ngx-lazy-loader';
+import { ContextMenuItem } from '@dotglitch/ngx-ctx-menu';
 
 @Component({
     selector: 'app-lazy-load-test',
     templateUrl: './lazy-load-test.component.html',
     styleUrls: ['./lazy-load-test.component.scss'],
     imports: [
-        SharedModule,
         OverlayWrapperComponent,
         NgxLazyLoaderComponent
     ],
@@ -45,13 +43,13 @@ export class LazyLoadTestComponent {
     cardContextMenu: ContextMenuItem<any>[] = [
         {
             label: "Edit",
-            action: (evt, data) => {
+            action: (data) => {
             }
         },
         {
             label: "Delete",
             // shortcutLabel: "Del",
-            action: (evt, data) => {
+            action: (data) => {
             },
         }
     ];

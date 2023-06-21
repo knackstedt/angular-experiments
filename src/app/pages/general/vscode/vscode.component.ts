@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, ViewChild } from '@angular/core';
-import { SharedModule } from 'src/app/shared.module';
 
 // Monaco has a UMD loader that requires this
 // @ts-ignore
@@ -43,9 +42,6 @@ const settings = {
     selector: 'app-vscode',
     templateUrl: './vscode.component.html',
     styleUrls: ['./vscode.component.scss'],
-    imports: [
-        SharedModule
-    ],
     standalone: true
 })
 export class VscodeComponent implements AfterViewInit, OnDestroy {

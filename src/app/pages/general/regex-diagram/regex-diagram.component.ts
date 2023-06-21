@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Regex2RailRoadDiagram } from './diagram/regex-to-railroad';
-import { SharedModule } from '../../../shared.module';
 
 
 @Component({
@@ -8,8 +7,6 @@ import { SharedModule } from '../../../shared.module';
     templateUrl: './regex-diagram.component.html',
     styleUrls: ['./regex-diagram.component.scss'],
     imports: [
-        SharedModule,
-
     ],
     standalone: true
 })
