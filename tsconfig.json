@@ -26,6 +26,9 @@
       "dom"
     ],
     "paths": {
+        // "@dotglitch/ngx-lazy-loader": [
+        //     "../@dotglitch_ngx-lazy-loader/dist/ngx-lazy-loader"
+        // ],
         "path": [
             "src/empty.ts"
         ],

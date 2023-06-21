@@ -1,0 +1,11 @@
+{
+    "$schema": "https://raw.githubusercontent.com/angular/angular-cli/398356503ab4729cf40587804c44b55eb5c99768/packages/@angular/cli/lib/config/schema.json",
+    "defaults": {
+        "component": {"spec": false},
+        "directive": {"spec": false},
+        "guard": {"spec": false},
+        "pipe": {"spec": false},
+        "service": {"spec": false},
+        "styleExt": "scss"
+    }
+}
