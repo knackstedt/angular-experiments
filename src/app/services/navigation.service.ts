@@ -4,6 +4,7 @@ import { Fetch } from './fetch.service';
 import { ToasterService } from './toaster.service';
 import { Logger } from '../utils';
 import { BehaviorSubject, startWith } from 'rxjs';
+import { NgxLazyLoaderService } from '@dotglitch/ngx-lazy-loader';
 
 const { log, warn, err } = Logger("NavigationService", "#ff9800");
 
@@ -19,8 +20,7 @@ export class NavigationService {
 
 
     constructor(
-        private fetch: Fetch,
-        private toaster: ToasterService
+        private readonly lazyLoader: NgxLazyLoaderService
     ) {
         // Cannot use hostlistener for some reason
         window.onhashchange = this.restoreNavigation.bind(this);
@@ -30,40 +30,32 @@ export class NavigationService {
     }
 
     private restoreNavigation(evt?: PopStateEvent | HashChangeEvent) {
-        if ([null, "", "#", '/#', '/#/'].includes(location.hash))
-            return this.loadHomepage();
-
-        if (evt?.type == "popstate") {
-            // window.history.pushState(location.hash, null, location.hash);
-            const event = evt as PopStateEvent;
-            event.preventDefault();
-            const hash = location.hash.split("?")[0];
-            this.loadRootPage(hash);
-
-            return;
-        }
-        // else {
-
-        // }
-
-
-
         const hash = location.hash.split("?")[0];
-        this.loadRootPage(hash);
+
+        if (
+            [null, "", "#", '/#', '/#/', '/#?'].includes(location.hash) ||
+            !hash ||
+            hash.length < 4 ||
+            !location.hash.startsWith("#") ||
+            !this.lazyLoader.isComponentRegistered(hash)
+        )
+            return this.loadRootPage("#/Landing");
+
+        return this.loadRootPage(hash)
     }
 
     /**
      * Helper to update the page URL.
-     * @param page component page ID to load.
+     * @param hash component page ID to load.
      * @param data string or JSON data for query params.
      */
-    private updateUrl(page: string, data: string | string[][] | Record<string, string | number> | URLSearchParams, replace = false) {
+    private updateUrl(hash: string, data: string | string[][] | Record<string, string | number> | URLSearchParams, replace = false) {
         const oldHash = location.hash.split('?')[0];
 
-        if (!page)
-            page = oldHash.split('/')[1];
+        if (!hash)
+            hash = oldHash.split('/')[1];
 
-        const hash = `#/${page}`;
+        // const hash = `#/${hash}`;
 
         const qstring = location.hash.split('?')[1];
 
@@ -135,20 +127,5 @@ export class NavigationService {
 
             }, 10);
         })
-    }
-
-    /*
-    * In the case where we have internal links on the application, we want
-    * a reliable way to load the correct page regardless where we trigger the action from.
-    * This prevents minor typos and bad links from existing in obscure places/pages.
-    */
-
-    // Trigger loading of the homepage.
-    public loadHomepage() {
-        this.loadRootPage("#/Landing");
-    }
-
-    public loadAboutUs() {
-        this.loadRootPage("#/About");
     }
 }

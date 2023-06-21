@@ -38,8 +38,4 @@ export class NotFoundComponent implements OnDestroy {
     ngOnDestroy() {
         this._sub?.unsubscribe();
     }
-
-    onHomeClick() {
-        this.navigator.loadHomepage();
-    }
 }

@@ -17,7 +17,9 @@ hash routing in the URL. E.g. https://localhost:4200/#/MyDogAteAPie -->
         <!-- TODO: Add contact us information -->
         <br />
     </p>
-    <button mat-button color="primary" (click)="onHomeClick()">Take me home</button>
+    <a href="#/Landing">
+        <button mat-button color="primary">Take me home</button>
+    </a>
 </div>
 <div *ngIf="visible">
     <h1>404</h1>
@@ -28,5 +30,7 @@ hash routing in the URL. E.g. https://localhost:4200/#/MyDogAteAPie -->
         If you think something is broken, report a problem.
         <br/>
     </p>
-    <button mat-button color="primary" (click)="onHomeClick()">Take me home</button>
+    <a href="#/Landing">
+        <button mat-button color="primary">Take me home</button>
+    </a>
 </div>
