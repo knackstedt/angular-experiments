@@ -28,9 +28,11 @@ export class NavigationService {
     }
 
     private restoreNavigation(evt?: PopStateEvent | HashChangeEvent) {
-        const hash = location.hash.split("?")[0];
+        const hash = decodeURIComponent(location.hash.split("?")[0]);
 
-        console.log(hash)
+        const c = this.lazyLoader.isComponentRegistered(hash);
+        console.log(hash, c)
+
         if (
             [null, "", "#", '/#', '/#/', '/#?'].includes(location.hash) ||
             !hash ||
