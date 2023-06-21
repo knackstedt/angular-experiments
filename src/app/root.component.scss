@@ -42,11 +42,12 @@ mat-sidenav {
     }
 }
 
-:host .content ::ng-deep > * {
+ngx-lazy-loader {
     display: block;
     height: 100%;
     width: 100%;
     overflow-y: auto;
     background-color: #00000069;
     color: #fff;
+    contain: content;
 }

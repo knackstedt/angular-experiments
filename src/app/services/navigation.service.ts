@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { Fetch } from './fetch.service';
-import { ToasterService } from './toaster.service';
 import { Logger } from '../utils';
 import { BehaviorSubject, startWith } from 'rxjs';
 import { NgxLazyLoaderService } from '@dotglitch/ngx-lazy-loader';
@@ -113,7 +111,6 @@ export class NavigationService {
             data: JSON.stringify({})
         });
 
-        console.trace(next);
         this.activePage$.next({
             id: next,
             args: {}

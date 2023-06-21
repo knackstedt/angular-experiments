@@ -33,5 +33,4 @@ export const RegisteredComponents: ComponentRegistration[] = [
     { id: 'info-dialog', load: () => import('src/app/pages/general/info-dialog/info-dialog.component'), hidden: true },
 
 ]
-// Read only -- this should be completely immutable.
-.map(o => Object.seal(o));
+
