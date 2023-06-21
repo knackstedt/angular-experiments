@@ -6,28 +6,28 @@
     flex-shrink: 0;
 }
 
-ul {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
+.menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    gap: 2px;
 }
 
-li {
-    cursor: pointer;
-    height: 38px;
-    padding: 8px 24px;
-    border-bottom: 1px solid #414141;
+.item {
+    width: 100%;
+    height: 40px;
     display: flex;
+    align-items: center;
+    padding: 0 12px;
+    font-size: 14px;
+    color: var(--text-color);
 
     &:hover {
-        background-color: #ffffff44;
-    }
-    &:last-of-type {
-        border-bottom: none;
-    }
-
-    mat-icon {
-        margin: -2px 8px -2px -2px;
+        background-color: #333;
     }
 }
 
+mat-icon {
+    margin-right: 6px;
+}

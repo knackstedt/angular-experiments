@@ -30,6 +30,7 @@ export class NavigationService {
     private restoreNavigation(evt?: PopStateEvent | HashChangeEvent) {
         const hash = location.hash.split("?")[0];
 
+        console.log(hash)
         if (
             [null, "", "#", '/#', '/#/', '/#?'].includes(location.hash) ||
             !hash ||
@@ -82,10 +83,6 @@ export class NavigationService {
                 query.delete(key);
         }
 
-        // console.log(hash);
-        if (!(hash.toLowerCase() == "#/frame" || hash.toLowerCase() == "#/powerbi") || data['id'] == -1)
-            query.delete('id');
-
         if (replace) {
             window.history.replaceState(data, '', hash + '?' + query.toString());
         }
@@ -108,21 +105,11 @@ export class NavigationService {
         next = next.replace(/[ ]/g, '-').replace(/|#\//g, '');
 
         this.updateUrl(next, {
-            data: JSON.stringify({})
         });
 
         this.activePage$.next({
             id: next,
             args: {}
         });
-
-        return new Promise<void>((res, rej) => {
-            // Interim change to the intentionally blank component
-            // to force re-initialization of the loaded component.
-            setTimeout(() => {
-                // Rip off leading slashes
-
-            }, 10);
-        })
     }
 }

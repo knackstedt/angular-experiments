@@ -1,10 +1,14 @@
-<ul>
-    <ng-container *ngFor="let page of pages">
-        <li *ngIf="!page['hidden']">
-            <a [href]="'#/' + page.id">
-                <mat-icon *ngIf="page['icon']" [fontIcon]="page['icon']"></mat-icon>
-                {{page.id}}
-            </a>
-        </li>
-    </ng-container>
-</ul>
+<div class="menu">
+    <a
+        *ngFor="let page of pages"
+        [href]="'#/' + page.id"
+        class="item"
+    >
+        <mat-icon
+            *ngIf="page['icon']"
+            [fontIcon]="page['icon']"
+            [style.color]="page['color'] || 'var(--text-color)'"
+        />
+        {{page.id}}
+    </a>
+</div>
