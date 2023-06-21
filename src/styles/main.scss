@@ -1,4 +1,4 @@
-// @import "@fontsource/roboto";
+@import "@fontsource/fira-sans";
 @import "@fontsource/material-icons";
 
 @import "./material.scss";
@@ -11,26 +11,7 @@ body {
 
 body {
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-
-    &.mobile app-menu {
-        .close-btn {
-            display: none;
-        }
-        .menu {
-            height: auto;
-        }
-    }
-
-    &.mobile app-portal-panel .panel>div {
-        flex-direction: column;
-    }
-
-    &.fatal-error {
-        .main {
-            display: none;
-        }
-    }
+    font-family: 'Fira Sans', "Helvetica Neue", sans-serif;
 }
 
 * {
@@ -42,13 +23,6 @@ body {
 
 iframe {
     border: 0;
-}
-
-button {
-    font-family: inherit;
-    border: 0;
-    background-color: #1565c0;
-    color: inherit;
 }
 
 a {
@@ -80,17 +54,6 @@ p {
 ::-webkit-scrollbar-corner {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
-
-
-.exit {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: -1;
-}
-
 
 :root {
     .mat-mdc-dialog-container .mdc-dialog__surface {
