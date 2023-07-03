@@ -1,6 +1,4 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-
-import { ThemeLoaderService } from 'src/app/services/theme-loader.service';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { DialogService } from 'src/app/services/dialog.service';
 import { NotificationService } from './services/notification.service';
@@ -8,7 +6,6 @@ import { NotificationService } from './services/notification.service';
 import { Fetch } from './services/fetch.service';
 import { ToasterService } from './services/toaster.service';
 import { KeyboardService } from './services/keyboard.service';
-import { RegisteredComponents } from './component.registry';
 
 @Component({
     selector: 'app-root',
@@ -22,7 +19,6 @@ export class RootComponent {
     constructor(
         private toaster: ToasterService,
         private fetch: Fetch,
-        private themeLoader: ThemeLoaderService,
         public navigator: NavigationService,
         public dialog: DialogService,
         private notification: NotificationService,

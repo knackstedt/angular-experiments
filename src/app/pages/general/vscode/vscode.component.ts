@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Input, OnDestroy, ViewChild } from '@angular/core';
 
 // Monaco has a UMD loader that requires this
 // @ts-ignore
@@ -6,8 +6,8 @@ window.require = { paths: { 'vs': '/lib/monaco/vs' } };
 
 const monacoFiles = [
     '/lib/monaco/vs/loader.js',
-     '/lib/monaco/vs/editor/editor.main.nls.js',
-     '/lib/monaco/vs/editor/editor.main.js',
+    '/lib/monaco/vs/editor/editor.main.nls.js',
+    '/lib/monaco/vs/editor/editor.main.js',
 ]
 let isInstalled = false
 function installMonaco() {
@@ -50,7 +50,34 @@ export class VscodeComponent implements AfterViewInit, OnDestroy {
     isDirty = false;
     editor;
     filename: string;
-    code: string;
+
+    private _code: string;
+    @Input() set code(value: string) {
+        if (value == this._code)
+            return;
+        if (typeof value != "string")
+            throw new TypeError("Value must be of type string");
+
+        this._code = value;
+        if (this.editor)
+            this.editor.setValue(this.code);
+    };
+    get code() { return this._code.trim() }
+
+    private _language: string;
+    @Input() set language(value: string) {
+        this._language = {
+            'ts': "typescript",
+            'html': 'xml',
+            'scss': 'css'
+        }[value] || "auto"
+
+        if (this.editor) {
+            const model = this.editor.getModel();
+            Monaco.editor.setModelLanguage(model, this._language);
+        }
+    }
+    get language() { return this._language }
 
     settings = {
         automaticLayout: true,
@@ -63,15 +90,20 @@ export class VscodeComponent implements AfterViewInit, OnDestroy {
         tabSize: 2,
         minimap: {
             enabled: true
+        },
+        scrollbar: {
+            alwaysConsumeMouseWheel: false
         }
     };
+
+    verticalScrollExhausted = false;
 
     constructor() {
         installMonaco();
     }
 
     ngAfterViewInit() {
-        this.settings.language = "json";
+        // this.settings.language = "json";
         this.initEditor();
     }
     ngOnDestroy(): void {
@@ -98,19 +130,28 @@ export class VscodeComponent implements AfterViewInit, OnDestroy {
             }, 100);
         });
 
+        this.settings.language = this._language;
+
         let editor = this.editor = Monaco.editor.create(this.editorElement.nativeElement, this.settings);
 
-        if (this.code) {
+        if (this.code)
             editor.setValue(this.code);
-        }
-        else {
-            this.code = JSON.stringify(Monaco.editor, null, 4);
-            editor.setValue(this.code);
-        }
+        // }
+        // else {
+        //     this.code = JSON.stringify(Monaco.editor, null, 4);
+        //     editor.setValue(this.code);
+        // }'
 
         editor.onDidChangeModelContent(() => {
             this.isDirty = this.editor.getValue() != this.code;
         });
+
+        // editor.onMouseWheel((...args) => {
+        //     console.log("onMouseWheel", args)
+        // });
+        // editor.onDidScrollChange((...args) => {
+        //     console.log("OnDidScrollChange", args)
+        // });
     }
 
     download() {
