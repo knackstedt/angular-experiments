@@ -1,4 +1,6 @@
-## Angular Experiments
+> :warning: **This project is no longer maintained**
+>
+> ## Angular Experiments
 
 This repository contains all of my Angular Experiments and proofs-of-concept
 Things such as rewriting components into Angular components, importing libraries etc.
