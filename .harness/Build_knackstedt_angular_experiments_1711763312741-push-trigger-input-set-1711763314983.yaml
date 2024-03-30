@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_knackstedt_angular_experiments_1711763312741-push-trigger-input-set
+  identifier: Build_knackstedt_angular_experiments_1711763312741pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_knackstedt_angular_experiments_1711763312741
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
