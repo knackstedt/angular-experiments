@@ -1,62 +1,78 @@
 <app-popup-card #card [expandHeight]="600" [expandWidth]="400">
-    <ng-template #preview>
-        <div class="preview">
-            <span class="bg" [style.background]="user.background || 'linear-gradient(140deg, #3f51b5, #2196f3)'"></span>
-            <!-- <span class="more"></span> -->
-            
-            <figure class="photo"><img [src]="user.headshot"></figure>
-            <article class="text">
-                <p class="name">{{user.name}}</p>
-                <p class="role">{{user.role}}</p>
-                <p class="desc">{{user.tagline}}</p>
-            </article>
-            <p class="lastseen" *ngIf="user.lastseen">{{user.lastseen}}</p>
-        </div>
-    </ng-template>
-    <ng-template #details>
-        <div class="details">
-            <span class="bg" [style.background]="user.background || 'linear-gradient(140deg, #3f51b5, #2196f3)'"></span>
-            <span class="more" (click)="card.close()"></span>
-            
-            <figure class="photo"><img [src]="user.headshot"></figure>
-            <article class="text">
-                <p class="name">{{user.name}}</p>
-                <p class="role">{{user.role}}</p>
-                <p class="desc">{{user.tagline}}</p>
-            </article>
-            
-            <div class="content">
-                <div class='time' style="height: 40px; overflow: visible; margin: 0;">
-                    <div *ngIf="user.dtStart">
-                        <div>
-                            <div class="length" *ngIf="yearsWorked(user.dtStart).years >= 1">
-                                <div class="big">{{yearsWorked(user.dtStart).years}}</div>
-                                <div>
-                                    <div *ngIf="yearsWorked(user.dtStart).years == 1" class="unit">year at Dynatrace</div>
-                                    <div *ngIf="yearsWorked(user.dtStart).years > 1" class="unit">years at Dynatrace</div>
-                                </div>
-                            </div>
-                            <div class="length" *ngIf="yearsWorked(user.dtStart).years == 0">
-                                <div class="big">{{yearsWorked(user.dtStart).months}}</div>
-                                <div>
-                                    <div *ngIf="yearsWorked(user.dtStart).months == 1" class="unit">month at Dynatrace</div>
-                                    <div *ngIf="yearsWorked(user.dtStart).months > 1" class="unit">months at Dynatrace</div>
-                                </div>
-                            </div>
-                        </div>
+  <ng-template #preview>
+    <div class="preview">
+      <span class="bg" [style.background]="user.background || 'linear-gradient(140deg, #3f51b5, #2196f3)'"></span>
+      <!-- <span class="more"></span> -->
+
+      <figure class="photo"><img [src]="user.headshot"></figure>
+      <article class="text">
+        <p class="name">{{user.name}}</p>
+        <p class="role">{{user.role}}</p>
+        <p class="desc">{{user.tagline}}</p>
+      </article>
+      @if (user.lastseen) {
+        <p class="lastseen">{{user.lastseen}}</p>
+      }
+    </div>
+  </ng-template>
+  <ng-template #details>
+    <div class="details">
+      <span class="bg" [style.background]="user.background || 'linear-gradient(140deg, #3f51b5, #2196f3)'"></span>
+      <span class="more" (click)="card.close()"></span>
+
+      <figure class="photo"><img [src]="user.headshot"></figure>
+      <article class="text">
+        <p class="name">{{user.name}}</p>
+        <p class="role">{{user.role}}</p>
+        <p class="desc">{{user.tagline}}</p>
+      </article>
+
+      <div class="content">
+        <div class='time' style="height: 40px; overflow: visible; margin: 0;">
+          @if (user.dtStart) {
+            <div>
+              <div>
+                @if (yearsWorked(user.dtStart).years >= 1) {
+                  <div class="length">
+                    <div class="big">{{yearsWorked(user.dtStart).years}}</div>
+                    <div>
+                      @if (yearsWorked(user.dtStart).years == 1) {
+                        <div class="unit">year at Dynatrace</div>
+                      }
+                      @if (yearsWorked(user.dtStart).years > 1) {
+                        <div class="unit">years at Dynatrace</div>
+                      }
                     </div>
-                </div>
-            
-                <ng-container *ngIf="user.bio">
-                    <h5>About</h5>
-                    <div [innerHTML]="user.bio"></div>
-                </ng-container>
-            
-                <ng-container *ngIf="user.specialties">
-                    <h5>Specialties</h5>
-                    <div [innerHTML]="user.specialties" style="height: unset; overflow: visible"></div>
-                </ng-container>
+                  </div>
+                }
+                @if (yearsWorked(user.dtStart).years == 0) {
+                  <div class="length">
+                    <div class="big">{{yearsWorked(user.dtStart).months}}</div>
+                    <div>
+                      @if (yearsWorked(user.dtStart).months == 1) {
+                        <div class="unit">month at Dynatrace</div>
+                      }
+                      @if (yearsWorked(user.dtStart).months > 1) {
+                        <div class="unit">months at Dynatrace</div>
+                      }
+                    </div>
+                  </div>
+                }
+              </div>
             </div>
+          }
         </div>
-    </ng-template>
+
+        @if (user.bio) {
+          <h5>About</h5>
+          <div [innerHTML]="user.bio"></div>
+        }
+
+        @if (user.specialties) {
+          <h5>Specialties</h5>
+          <div [innerHTML]="user.specialties" style="height: unset; overflow: visible"></div>
+        }
+      </div>
+    </div>
+  </ng-template>
 </app-popup-card>

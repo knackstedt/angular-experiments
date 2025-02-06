@@ -1,16 +1,16 @@
 import { AfterViewInit, Component, Input,ViewEncapsulation } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
     selector: 'app-backdrop',
     templateUrl: './backdrop.component.html',
     styleUrls: ['./backdrop.component.scss'],
     imports: [
-        CommonModule,
         MatProgressSpinnerModule
     ],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    standalone: true
 })
 export class BackdropComponent implements AfterViewInit {
     @Input() loading = false;

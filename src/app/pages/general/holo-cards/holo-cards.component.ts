@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 import { HoloCardComponent } from 'src/app/components/holo-card/holo-card.component';
 import data from "./cards.json";
-import { NgForOf } from '@angular/common';
+
 
 @Component({
     selector: 'app-holo-cards',
     templateUrl: './holo-cards.component.html',
     styleUrls: ['./holo-cards.component.scss'],
     imports: [
-        NgForOf,
-        HoloCardComponent
-    ],
+    HoloCardComponent
+],
     standalone: true
 })
 export class HoloCardsComponent {

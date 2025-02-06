@@ -1,444 +1,462 @@
 <!-- <app-holo-card
-    *ngFor="let card of cards"
-    [id]="card.id"
-    [number]="card.number"
-    [set]="card.set"
-    [types]="card.types"
-    [subtypes]="card.subtypes"
-    [supertype]="card.supertype"
-    [rarity]="card.rarity"
-    [img]="card.images.small"
-    [mask]="card.images.mask"
-    [foil]="card.images.foil"
-    [isReverse]="true"
-    ></app-holo-card> -->
+*ngFor="let card of cards"
+[id]="card.id"
+[number]="card.number"
+[set]="card.set"
+[types]="card.types"
+[subtypes]="card.subtypes"
+[supertype]="card.supertype"
+[rarity]="card.rarity"
+[img]="card.images.small"
+[mask]="card.images.mask"
+[foil]="card.images.foil"
+[isReverse]="true"
+></app-holo-card> -->
 
 <main>
-	<header>
-        <h1>Holo Cards</h1>
-        <p>
-            This is a demo conversion of <a href="https://codepen.io/simeydotme/pen/abYWJdX">https://codepen.io/simeydotme/pen/abYWJdX</a>
-            into an Angular component writing a compatible spring class that can replace the
-            svelte dependency of Simon's implementation.
-            <br/>
-            The layout inherits much of Simon's layout for comparison purposes.
-        </p>
+  <header>
+    <h1>Holo Cards</h1>
+    <p>
+      This is a demo conversion of <a href="https://codepen.io/simeydotme/pen/abYWJdX">https://codepen.io/simeydotme/pen/abYWJdX</a>
+      into an Angular component writing a compatible spring class that can replace the
+      svelte dependency of Simon's implementation.
+      <br/>
+      The layout inherits much of Simon's layout for comparison purposes.
+    </p>
 
-		<div class="showcase">
-            <app-holo-card
-                style="--card-aspect: 1; --card-radius: 50%"
-                [id]="showcase.id"
-                [number]="showcase.number"
-                [set]="showcase.set"
-                [types]="showcase.types"
-                [subtypes]="showcase.subtypes"
-                [supertype]="showcase.supertype"
-                [rarity]="showcase.rarity"
-                [img]="showcase.images.small"
-                [mask]="showcase.images.mask"
-                [foil]="showcase.images.foil"
-                [shine]="showcase.images.foil"
-                [aspect]="1"
-                [width]="737"
-                [height]="737"
-                ></app-holo-card>
-		</div>
-	</header>
+    <div class="showcase">
+      <app-holo-card
+        style="--card-aspect: 1; --card-radius: 50%"
+        [id]="showcase.id"
+        [number]="showcase.number"
+        [set]="showcase.set"
+        [types]="showcase.types"
+        [subtypes]="showcase.subtypes"
+        [supertype]="showcase.supertype"
+        [rarity]="showcase.rarity"
+        [img]="showcase.images.small"
+        [mask]="showcase.images.mask"
+        [foil]="showcase.images.foil"
+        [shine]="showcase.images.foil"
+        [aspect]="1"
+        [width]="737"
+        [height]="737"
+      ></app-holo-card>
+    </div>
+  </header>
 
-	<h2 id="⚓-common">
-		<a href="#⚓-common">
-			Common &amp; Uncommon
-		</a>
-	</h2>
+  <h2 id="⚓-common">
+    <a href="#⚓-common">
+      Common &amp; Uncommon
+    </a>
+  </h2>
 
-	<section class="card-grid active">
-        <app-holo-card
-            *ngFor="let card of basics"
-            [id]="card.id"
-            [number]="card.number"
-            [set]="card.set"
-            [types]="card.types"
-            [subtypes]="card.subtypes"
-            [supertype]="card.supertype"
-            [rarity]="card.rarity"
-            [img]="card.images.small"
-            [mask]="card.images.mask"
-            [foil]="card.images.foil"
-            ></app-holo-card>
-	</section>
+  <section class="card-grid active">
+    @for (card of basics; track card) {
+      <app-holo-card
+        [id]="card.id"
+        [number]="card.number"
+        [set]="card.set"
+        [types]="card.types"
+        [subtypes]="card.subtypes"
+        [supertype]="card.supertype"
+        [rarity]="card.rarity"
+        [img]="card.images.small"
+        [mask]="card.images.mask"
+        [foil]="card.images.foil"
+      ></app-holo-card>
+    }
+  </section>
 
-	<h2 id="⚓-reverse">
-		<a href="#⚓-reverse">
-			Reverse Holo non-rares
-		</a>
-	</h2>
+  <h2 id="⚓-reverse">
+    <a href="#⚓-reverse">
+      Reverse Holo non-rares
+    </a>
+  </h2>
 
-	<section class="card-grid active">
-        <app-holo-card
-            *ngFor="let card of reverse"
-            [id]="card.id"
-            [number]="card.number"
-            [set]="card.set"
-            [types]="card.types"
-            [subtypes]="card.subtypes"
-            [supertype]="card.supertype"
-            [rarity]="card.rarity"
-            [img]="card.images.small"
-            [mask]="card.images.mask"
-            [foil]="card.images.foil"
-            [isReverse]="true"
-            ></app-holo-card>
-	</section>
+  <section class="card-grid active">
+    @for (card of reverse; track card) {
+      <app-holo-card
+        [id]="card.id"
+        [number]="card.number"
+        [set]="card.set"
+        [types]="card.types"
+        [subtypes]="card.subtypes"
+        [supertype]="card.supertype"
+        [rarity]="card.rarity"
+        [img]="card.images.small"
+        [mask]="card.images.mask"
+        [foil]="card.images.foil"
+        [isReverse]="true"
+      ></app-holo-card>
+    }
+  </section>
 
-	<h2 id="⚓-holo">
-		<a href="#⚓-holo">
-			Holofoil Rare
-		</a>
-	</h2>
+  <h2 id="⚓-holo">
+    <a href="#⚓-holo">
+      Holofoil Rare
+    </a>
+  </h2>
 
-	<section class="card-grid active">
-        <app-holo-card
-            *ngFor="let card of holos"
-            [id]="card.id"
-            [number]="card.number"
-            [set]="card.set"
-            [types]="card.types"
-            [subtypes]="card.subtypes"
-            [supertype]="card.supertype"
-            [rarity]="card.rarity"
-            [img]="card.images.small"
-            [mask]="card.images.mask"
-            [foil]="card.images.foil"
-            ></app-holo-card>
-	</section>
+  <section class="card-grid active">
+    @for (card of holos; track card) {
+      <app-holo-card
+        [id]="card.id"
+        [number]="card.number"
+        [set]="card.set"
+        [types]="card.types"
+        [subtypes]="card.subtypes"
+        [supertype]="card.supertype"
+        [rarity]="card.rarity"
+        [img]="card.images.small"
+        [mask]="card.images.mask"
+        [foil]="card.images.foil"
+      ></app-holo-card>
+    }
+  </section>
 
-	<h2 id="⚓-galaxy">
-		<a href="#⚓-galaxy">
-			Galaxy/Cosmos Holofoil
-		</a>
-	</h2>
+  <h2 id="⚓-galaxy">
+    <a href="#⚓-galaxy">
+      Galaxy/Cosmos Holofoil
+    </a>
+  </h2>
 
-	<section class="card-grid active">
-        <app-holo-card
-            *ngFor="let card of cosmos"
-            [id]="card.id"
-            [number]="card.number"
-            [set]="card.set"
-            [types]="card.types"
-            [subtypes]="card.subtypes"
-            [supertype]="card.supertype"
-            [rarity]="card.rarity"
-            [img]="card.images.small"
-            [mask]="card.images.mask"
-            [foil]="card.images.foil"
-            ></app-holo-card>
-	</section>
+  <section class="card-grid active">
+    @for (card of cosmos; track card) {
+      <app-holo-card
+        [id]="card.id"
+        [number]="card.number"
+        [set]="card.set"
+        [types]="card.types"
+        [subtypes]="card.subtypes"
+        [supertype]="card.supertype"
+        [rarity]="card.rarity"
+        [img]="card.images.small"
+        [mask]="card.images.mask"
+        [foil]="card.images.foil"
+      ></app-holo-card>
+    }
+  </section>
 
-	<h2 id="⚓-amazing">
-		<a href="#⚓-amazing">
-			Holofoil Amazing Rare
-		</a>
-	</h2>
+  <h2 id="⚓-amazing">
+    <a href="#⚓-amazing">
+      Holofoil Amazing Rare
+    </a>
+  </h2>
 
-	<section class="card-grid active">
-        <app-holo-card
-            *ngFor="let card of amazings"
-            [id]="card.id"
-            [number]="card.number"
-            [set]="card.set"
-            [types]="card.types"
-            [subtypes]="card.subtypes"
-            [supertype]="card.supertype"
-            [rarity]="card.rarity"
-            [img]="card.images.small"
-            [mask]="card.images.mask"
-            [foil]="card.images.foil"
-            ></app-holo-card>
-	</section>
+  <section class="card-grid active">
+    @for (card of amazings; track card) {
+      <app-holo-card
+        [id]="card.id"
+        [number]="card.number"
+        [set]="card.set"
+        [types]="card.types"
+        [subtypes]="card.subtypes"
+        [supertype]="card.supertype"
+        [rarity]="card.rarity"
+        [img]="card.images.small"
+        [mask]="card.images.mask"
+        [foil]="card.images.foil"
+      ></app-holo-card>
+    }
+  </section>
 
-	<h2 id="⚓-radiant">
-		<a href="#⚓-radiant">
-			Radiant Holofoil
-		</a>
-	</h2>
+  <h2 id="⚓-radiant">
+    <a href="#⚓-radiant">
+      Radiant Holofoil
+    </a>
+  </h2>
 
-	<section class="card-grid active">
-        <app-holo-card
-            *ngFor="let card of radiant"
-            [id]="card.id"
-            [number]="card.number"
-            [set]="card.set"
-            [types]="card.types"
-            [subtypes]="card.subtypes"
-            [supertype]="card.supertype"
-            [rarity]="card.rarity"
-            [img]="card.images.small"
-            [mask]="card.images.mask"
-            [foil]="card.images.foil"
-            ></app-holo-card>
-	</section>
+  <section class="card-grid active">
+    @for (card of radiant; track card) {
+      <app-holo-card
+        [id]="card.id"
+        [number]="card.number"
+        [set]="card.set"
+        [types]="card.types"
+        [subtypes]="card.subtypes"
+        [supertype]="card.supertype"
+        [rarity]="card.rarity"
+        [img]="card.images.small"
+        [mask]="card.images.mask"
+        [foil]="card.images.foil"
+      ></app-holo-card>
+    }
+  </section>
 
-	<h2 id="⚓-trainer-gallery-holo">
-		<a href="#⚓-trainer-gallery-holo">
-			Trainer Gallery Holofoil
-		</a>
-	</h2>
-	<section class="card-grid active">
-        <app-holo-card
-            *ngFor="let card of basicGallery"
-            [id]="card.id"
-            [number]="card.number"
-            [set]="card.set"
-            [types]="card.types"
-            [subtypes]="card.subtypes"
-            [supertype]="card.supertype"
-            [rarity]="card.rarity"
-            [img]="card.images.small"
-            [mask]="card.images.mask"
-            [foil]="card.images.foil"
-            ></app-holo-card>
-	</section>
+  <h2 id="⚓-trainer-gallery-holo">
+    <a href="#⚓-trainer-gallery-holo">
+      Trainer Gallery Holofoil
+    </a>
+  </h2>
+  <section class="card-grid active">
+    @for (card of basicGallery; track card) {
+      <app-holo-card
+        [id]="card.id"
+        [number]="card.number"
+        [set]="card.set"
+        [types]="card.types"
+        [subtypes]="card.subtypes"
+        [supertype]="card.supertype"
+        [rarity]="card.rarity"
+        [img]="card.images.small"
+        [mask]="card.images.mask"
+        [foil]="card.images.foil"
+      ></app-holo-card>
+    }
+  </section>
 
-	<h2 id="⚓-v">
-		<a href="#⚓-v">
-			Pokemon V
-		</a>
-	</h2>
+  <h2 id="⚓-v">
+    <a href="#⚓-v">
+      Pokemon V
+    </a>
+  </h2>
 
-	<section class="card-grid active">
-        <app-holo-card
-            *ngFor="let card of vee"
-            [id]="card.id"
-            [number]="card.number"
-            [set]="card.set"
-            [types]="card.types"
-            [subtypes]="card.subtypes"
-            [supertype]="card.supertype"
-            [rarity]="card.rarity"
-            [img]="card.images.small"
-            [mask]="card.images.mask"
-            [foil]="card.images.foil"
-            ></app-holo-card>
-	</section>
+  <section class="card-grid active">
+    @for (card of vee; track card) {
+      <app-holo-card
+        [id]="card.id"
+        [number]="card.number"
+        [set]="card.set"
+        [types]="card.types"
+        [subtypes]="card.subtypes"
+        [supertype]="card.supertype"
+        [rarity]="card.rarity"
+        [img]="card.images.small"
+        [mask]="card.images.mask"
+        [foil]="card.images.foil"
+      ></app-holo-card>
+    }
+  </section>
 
-	<h2 id="⚓-v-full-art">
-		<a href="#⚓-v-full-art">
-			Pokemon V <sup>(Full Art)</sup>
-		</a>
-	</h2>
-
-
-	<section class="card-grid active">
-        <app-holo-card
-            *ngFor="let card of veeUltra"
-            [id]="card.id"
-            [number]="card.number"
-            [set]="card.set"
-            [types]="card.types"
-            [subtypes]="card.subtypes"
-            [supertype]="card.supertype"
-            [rarity]="card.rarity"
-            [img]="card.images.small"
-            [mask]="card.images.mask"
-            [foil]="card.images.foil"
-            ></app-holo-card>
-	</section>
-
-	<h2 id="⚓-v-alternate-art">
-		<a href="#⚓-v-alternate-art">
-			Pokemon V <sup>(Alternate Art)</sup>
-		</a>
-	</h2>
-
-	<section class="card-grid active">
-        <app-holo-card
-            *ngFor="let card of veeAlt"
-            [id]="card.id"
-            [number]="card.number"
-            [set]="card.set"
-            [types]="card.types"
-            [subtypes]="card.subtypes"
-            [supertype]="card.supertype"
-            [rarity]="card.rarity"
-            [img]="card.images.small"
-            [mask]="card.images.mask"
-            [foil]="card.images.foil"
-            ></app-holo-card>
-	</section>
-
-	<h2 id="⚓-v-max">
-		<a href="#⚓-v-max">
-			VMax
-		</a>
-	</h2>
-	<section class="card-grid active">
-        <app-holo-card
-            *ngFor="let card of veeMax"
-            [id]="card.id"
-            [number]="card.number"
-            [set]="card.set"
-            [types]="card.types"
-            [subtypes]="card.subtypes"
-            [supertype]="card.supertype"
-            [rarity]="card.rarity"
-            [img]="card.images.small"
-            [mask]="card.images.mask"
-            [foil]="card.images.foil"
-            ></app-holo-card>
-	</section>
-
-	<h2 id="⚓-v-max-alternate">
-		<a href="#⚓-v-max-alternate">
-			VMax <sup>(Alternate/Rainbow)</sup>
-		</a>
-	</h2>
-
-	<section class="card-grid active">
-        <app-holo-card
-            *ngFor="let card of veeMaxAlt"
-            [id]="card.id"
-            [number]="card.number"
-            [set]="card.set"
-            [types]="card.types"
-            [subtypes]="card.subtypes"
-            [supertype]="card.supertype"
-            [rarity]="card.rarity"
-            [img]="card.images.small"
-            [mask]="card.images.mask"
-            [foil]="card.images.foil"
-            ></app-holo-card>
-	</section>
-
-	<h2 id="⚓-v-star">
-		<a href="#⚓-v-star">
-			VStar
-		</a>
-	</h2>
-
-	<section class="card-grid active">
-        <app-holo-card
-            *ngFor="let card of veeStar"
-            [id]="card.id"
-            [number]="card.number"
-            [set]="card.set"
-            [types]="card.types"
-            [subtypes]="card.subtypes"
-            [supertype]="card.supertype"
-            [rarity]="card.rarity"
-            [img]="card.images.small"
-            [mask]="card.images.mask"
-            [foil]="card.images.foil"
-            ></app-holo-card>
-	</section>
-
-	<h2 id="⚓-trainer-full-art">
-		<a href="#⚓-trainer-full-art">
-			Trainer Holo <sup>(Full Art / Trainer Gallery)</sup>
-		</a>
-	</h2>
-
-	<section class="card-grid active">
-        <app-holo-card
-            *ngFor="let card of trainerHolo"
-            [id]="card.id"
-            [number]="card.number"
-            [set]="card.set"
-            [types]="card.types"
-            [subtypes]="card.subtypes"
-            [supertype]="card.supertype"
-            [rarity]="card.rarity"
-            [img]="card.images.small"
-            [mask]="card.images.mask"
-            [foil]="card.images.foil"
-            ></app-holo-card>
-	</section>
-
-	<h2 id="⚓-rainbow-rare">
-		<a href="#⚓-rainbow-rare">
-			Rainbow Rare <sup>(VMax, VStar)</sup>
-		</a>
-	</h2>
-
-	<section class="card-grid active">
-        <app-holo-card
-            *ngFor="let card of rainbow"
-            [id]="card.id"
-            [number]="card.number"
-            [set]="card.set"
-            [types]="card.types"
-            [subtypes]="card.subtypes"
-            [supertype]="card.supertype"
-            [rarity]="card.rarity"
-            [img]="card.images.small"
-            [mask]="card.images.mask"
-            [foil]="card.images.foil"
-            ></app-holo-card>
-	</section>
-
-	<h2 id="⚓-secret-rare">
-		<a href="#⚓-secret-rare">
-			Secret Rare <sup>(Gold)</sup>
-		</a>
-	</h2>
+  <h2 id="⚓-v-full-art">
+    <a href="#⚓-v-full-art">
+      Pokemon V <sup>(Full Art)</sup>
+    </a>
+  </h2>
 
 
-	<section class="card-grid active">
-        <app-holo-card
-            *ngFor="let card of gold"
-            [id]="card.id"
-            [number]="card.number"
-            [set]="card.set"
-            [types]="card.types"
-            [subtypes]="card.subtypes"
-            [supertype]="card.supertype"
-            [rarity]="card.rarity"
-            [img]="card.images.small"
-            [mask]="card.images.mask"
-            [foil]="card.images.foil"
-            ></app-holo-card>
-	</section>
+  <section class="card-grid active">
+    @for (card of veeUltra; track card) {
+      <app-holo-card
+        [id]="card.id"
+        [number]="card.number"
+        [set]="card.set"
+        [types]="card.types"
+        [subtypes]="card.subtypes"
+        [supertype]="card.supertype"
+        [rarity]="card.rarity"
+        [img]="card.images.small"
+        [mask]="card.images.mask"
+        [foil]="card.images.foil"
+      ></app-holo-card>
+    }
+  </section>
 
-	<h2 id="⚓-trainer-gallery-v">
-		<a href="#⚓-trainer-gallery-v">
-			Trainer Gallery <sup>(V / VMax)</sup>
-		</a>
-	</h2>
+  <h2 id="⚓-v-alternate-art">
+    <a href="#⚓-v-alternate-art">
+      Pokemon V <sup>(Alternate Art)</sup>
+    </a>
+  </h2>
 
-	<section class="card-grid active">
-        <app-holo-card
-            *ngFor="let card of veeGallery"
-            [id]="card.id"
-            [number]="card.number"
-            [set]="card.set"
-            [types]="card.types"
-            [subtypes]="card.subtypes"
-            [supertype]="card.supertype"
-            [rarity]="card.rarity"
-            [img]="card.images.small"
-            [mask]="card.images.mask"
-            [foil]="card.images.foil"
-            ></app-holo-card>
-	</section>
+  <section class="card-grid active">
+    @for (card of veeAlt; track card) {
+      <app-holo-card
+        [id]="card.id"
+        [number]="card.number"
+        [set]="card.set"
+        [types]="card.types"
+        [subtypes]="card.subtypes"
+        [supertype]="card.supertype"
+        [rarity]="card.rarity"
+        [img]="card.images.small"
+        [mask]="card.images.mask"
+        [foil]="card.images.foil"
+      ></app-holo-card>
+    }
+  </section>
 
-	<h2 id="⚓-shiny-vault">
-		<a href="#⚓-shiny-vault">
-			Shiny Vault <sup>(Basic / Stage 1 / V / VMax)</sup>
-		</a>
-	</h2>
+  <h2 id="⚓-v-max">
+    <a href="#⚓-v-max">
+      VMax
+    </a>
+  </h2>
+  <section class="card-grid active">
+    @for (card of veeMax; track card) {
+      <app-holo-card
+        [id]="card.id"
+        [number]="card.number"
+        [set]="card.set"
+        [types]="card.types"
+        [subtypes]="card.subtypes"
+        [supertype]="card.supertype"
+        [rarity]="card.rarity"
+        [img]="card.images.small"
+        [mask]="card.images.mask"
+        [foil]="card.images.foil"
+      ></app-holo-card>
+    }
+  </section>
 
-	<section class="card-grid active">
-        <app-holo-card
-            *ngFor="let card of shinyVault"
-            [id]="card.id"
-            [number]="card.number"
-            [set]="card.set"
-            [types]="card.types"
-            [subtypes]="card.subtypes"
-            [supertype]="card.supertype"
-            [rarity]="card.rarity"
-            [img]="card.images.small"
-            [mask]="card.images.mask"
-            [foil]="card.images.foil"
-            ></app-holo-card>
-	</section>
+  <h2 id="⚓-v-max-alternate">
+    <a href="#⚓-v-max-alternate">
+      VMax <sup>(Alternate/Rainbow)</sup>
+    </a>
+  </h2>
+
+  <section class="card-grid active">
+    @for (card of veeMaxAlt; track card) {
+      <app-holo-card
+        [id]="card.id"
+        [number]="card.number"
+        [set]="card.set"
+        [types]="card.types"
+        [subtypes]="card.subtypes"
+        [supertype]="card.supertype"
+        [rarity]="card.rarity"
+        [img]="card.images.small"
+        [mask]="card.images.mask"
+        [foil]="card.images.foil"
+      ></app-holo-card>
+    }
+  </section>
+
+  <h2 id="⚓-v-star">
+    <a href="#⚓-v-star">
+      VStar
+    </a>
+  </h2>
+
+  <section class="card-grid active">
+    @for (card of veeStar; track card) {
+      <app-holo-card
+        [id]="card.id"
+        [number]="card.number"
+        [set]="card.set"
+        [types]="card.types"
+        [subtypes]="card.subtypes"
+        [supertype]="card.supertype"
+        [rarity]="card.rarity"
+        [img]="card.images.small"
+        [mask]="card.images.mask"
+        [foil]="card.images.foil"
+      ></app-holo-card>
+    }
+  </section>
+
+  <h2 id="⚓-trainer-full-art">
+    <a href="#⚓-trainer-full-art">
+      Trainer Holo <sup>(Full Art / Trainer Gallery)</sup>
+    </a>
+  </h2>
+
+  <section class="card-grid active">
+    @for (card of trainerHolo; track card) {
+      <app-holo-card
+        [id]="card.id"
+        [number]="card.number"
+        [set]="card.set"
+        [types]="card.types"
+        [subtypes]="card.subtypes"
+        [supertype]="card.supertype"
+        [rarity]="card.rarity"
+        [img]="card.images.small"
+        [mask]="card.images.mask"
+        [foil]="card.images.foil"
+      ></app-holo-card>
+    }
+  </section>
+
+  <h2 id="⚓-rainbow-rare">
+    <a href="#⚓-rainbow-rare">
+      Rainbow Rare <sup>(VMax, VStar)</sup>
+    </a>
+  </h2>
+
+  <section class="card-grid active">
+    @for (card of rainbow; track card) {
+      <app-holo-card
+        [id]="card.id"
+        [number]="card.number"
+        [set]="card.set"
+        [types]="card.types"
+        [subtypes]="card.subtypes"
+        [supertype]="card.supertype"
+        [rarity]="card.rarity"
+        [img]="card.images.small"
+        [mask]="card.images.mask"
+        [foil]="card.images.foil"
+      ></app-holo-card>
+    }
+  </section>
+
+  <h2 id="⚓-secret-rare">
+    <a href="#⚓-secret-rare">
+      Secret Rare <sup>(Gold)</sup>
+    </a>
+  </h2>
+
+
+  <section class="card-grid active">
+    @for (card of gold; track card) {
+      <app-holo-card
+        [id]="card.id"
+        [number]="card.number"
+        [set]="card.set"
+        [types]="card.types"
+        [subtypes]="card.subtypes"
+        [supertype]="card.supertype"
+        [rarity]="card.rarity"
+        [img]="card.images.small"
+        [mask]="card.images.mask"
+        [foil]="card.images.foil"
+      ></app-holo-card>
+    }
+  </section>
+
+  <h2 id="⚓-trainer-gallery-v">
+    <a href="#⚓-trainer-gallery-v">
+      Trainer Gallery <sup>(V / VMax)</sup>
+    </a>
+  </h2>
+
+  <section class="card-grid active">
+    @for (card of veeGallery; track card) {
+      <app-holo-card
+        [id]="card.id"
+        [number]="card.number"
+        [set]="card.set"
+        [types]="card.types"
+        [subtypes]="card.subtypes"
+        [supertype]="card.supertype"
+        [rarity]="card.rarity"
+        [img]="card.images.small"
+        [mask]="card.images.mask"
+        [foil]="card.images.foil"
+      ></app-holo-card>
+    }
+  </section>
+
+  <h2 id="⚓-shiny-vault">
+    <a href="#⚓-shiny-vault">
+      Shiny Vault <sup>(Basic / Stage 1 / V / VMax)</sup>
+    </a>
+  </h2>
+
+  <section class="card-grid active">
+    @for (card of shinyVault; track card) {
+      <app-holo-card
+        [id]="card.id"
+        [number]="card.number"
+        [set]="card.set"
+        [types]="card.types"
+        [subtypes]="card.subtypes"
+        [supertype]="card.supertype"
+        [rarity]="card.rarity"
+        [img]="card.images.small"
+        [mask]="card.images.mask"
+        [foil]="card.images.foil"
+      ></app-holo-card>
+    }
+  </section>
 </main>

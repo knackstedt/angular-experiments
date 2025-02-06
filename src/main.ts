@@ -1,18 +1,22 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
+import { bootstrapApplication, provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { LazyLoaderModule } from '@dotglitch/ngx-common';
+import { RegisteredComponents } from 'src/app/component.registry';
+import { RootComponent } from 'src/app/root.component';
 
-import { AppModule } from './app/app.module';
-import { environment } from './environment';
-import "./empty";
-
-// React support requires this global binding.
-import * as React from 'react';
-window.React = React;
-
-
-if (environment.production) {
-    enableProdMode();
-}
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-    .catch(err => console.error(err));
+bootstrapApplication(RootComponent, {
+    providers: [
+        provideAnimationsAsync(),
+        importProvidersFrom(
+            LazyLoaderModule.forRoot({
+                entries: RegisteredComponents
+            }),
+        ),
+        provideZoneChangeDetection({ eventCoalescing: true }),
+        provideClientHydration(withEventReplay()),
+        provideHttpClient(withInterceptorsFromDi())
+    ]
+})
+    .catch((err) => console.error(err));

@@ -1,16 +1,18 @@
 <div #container style="height: 100%" (click)="open()" [class.hide]="expand">
-    <ng-container *ngTemplateOutlet="preview">
-    </ng-container>
+  <ng-container *ngTemplateOutlet="preview">
+  </ng-container>
 </div>
 
-<div *ngIf="expand" class="popup">
+@if (expand) {
+  <div class="popup">
     <div class="exit" [style.opacity]="blurBackground ? 1 : 0" (click)="close()"></div>
     <div class="details"
-        [style.width]="popupWidth"
-        [style.height]="popupHeight"
-        [style.transform]="popupTransform"
-        [style.opacity]="animatingOut ? 0 : 1"
-    >
-        <ng-container *ngTemplateOutlet="details"></ng-container>
+      [style.width]="popupWidth"
+      [style.height]="popupHeight"
+      [style.transform]="popupTransform"
+      [style.opacity]="animatingOut ? 0 : 1"
+      >
+      <ng-container *ngTemplateOutlet="details"></ng-container>
     </div>
-</div>
+  </div>
+}

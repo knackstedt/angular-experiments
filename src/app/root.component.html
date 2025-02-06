@@ -3,33 +3,36 @@
 
 <!-- We use this outer component to hide the DOM until we have something relevant to show -->
 <ng-container>
-    <mat-toolbar>
-        <a href="#/Landing"><div class="logo"></div></a>
-        <button mat-icon-button (click)="sidenav.toggle()">
-            <mat-icon>menu</mat-icon>
-        </button>
+  <mat-toolbar>
+    <a href="#/Landing"><div class="logo"></div></a>
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
 
-        <span style="flex: 1"></span>
-        <button mat-icon-button (click)="dialog.open('info-dialog')">
-            <mat-icon>info</mat-icon>
-        </button>
-    </mat-toolbar>
+    <span style="flex: 1"></span>
+    <button mat-icon-button (click)="dialog.open('info-dialog')">
+      <mat-icon>info</mat-icon>
+    </button>
+  </mat-toolbar>
 
-    <!-- Main area with the nav and contents -->
-    <mat-sidenav-container class="main">
-        <!-- Navigation menu on the left. -->
+  <!-- Main area with the nav and contents -->
+  <mat-sidenav-container class="main">
+    <!-- Navigation menu on the left. -->
 
-        <mat-sidenav #sidenav mode="side" opened style="width: 240px;">
-            <app-navbar></app-navbar>
-        </mat-sidenav>
+    <mat-sidenav #sidenav mode="side" opened style="width: 240px;">
+      <app-navbar></app-navbar>
+    </mat-sidenav>
 
 
-        <mat-sidenav-content class="content">
-            <ng-container *ngFor="let page of [navigator.activePage$.value]">
-                <ngx-lazy-loader *ngIf="page?.id" [component]="page?.id" [inputs]="page?.args"></ngx-lazy-loader>
-            </ng-container>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
+    <mat-sidenav-content class="content">
+        @if (navigator.virtualPath$.value?.root) {
+            <ngx-lazy-loader
+                [component]="navigator.virtualPath$.value?.root"
+                [inputs]="navigator.virtualPath$.value?.args"
+            />
+        }
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </ng-container>
 
 <!-- We need to have an inject space for the component -->

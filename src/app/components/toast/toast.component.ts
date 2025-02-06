@@ -1,6 +1,7 @@
 import { ToasterService } from 'src/app/services/toaster.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastMessage } from 'src/app/types/toast-message';
+import { MatIconModule } from '@angular/material/icon';
 
 type ToastItem = ToastMessage & {
     id: number
@@ -10,13 +11,16 @@ type ToastItem = ToastMessage & {
     selector: 'app-toast',
     templateUrl: './toast.component.html',
     styleUrls: ['./toast.component.scss'],
-    standalone: false
+    imports: [
+        MatIconModule
+    ],
+    standalone: true
 })
 export class ToastComponent {
 
     toastItems: ToastItem[] = [];
 
-    constructor(private toaster: ToasterService) { 
+    constructor(private toaster: ToasterService) {
         toaster.toaster$.subscribe(message => {
             this.openMessage(message);
         });
@@ -33,7 +37,7 @@ export class ToastComponent {
             ...(message.data || {}),
 
             // Give it a unique id.
-            id: this.toastId++ 
+            id: this.toastId++
         };
         this.toastItems.push(toastItem);
 

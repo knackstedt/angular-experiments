@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { ConfirmationComponent } from '../components/@framework/dialog-confirmation/confirmation-dialog.component';
 
 import interact from 'interactjs';
 import { Logger } from '../utils';
-import { NgxLazyLoaderService, NgxLazyLoaderComponent } from '@dotglitch/ngx-lazy-loader';
+import { LazyLoaderComponent, LazyLoaderService } from '@dotglitch/ngx-common';
 
 const { log, warn, err } = Logger("DialogService", "#607d8b");
 
@@ -25,7 +24,7 @@ export class DialogService {
 
     constructor(
         private dialog: MatDialog,
-        private lazyLoader: NgxLazyLoaderService
+        private lazyLoader: LazyLoaderService
     ) { }
 
     /**
@@ -66,7 +65,7 @@ export class DialogService {
                 }
             };
 
-            this.dialogRef = this.dialog.open(NgxLazyLoaderComponent, opts);
+            this.dialogRef = this.dialog.open(LazyLoaderComponent, opts);
 
             this.dialogRef.afterClosed().subscribe(result => {
                 log("Dialog closed " + name, result);
@@ -91,14 +90,14 @@ export class DialogService {
      */
     confirmAction(title: string, message: string): Promise<void> {
         return new Promise((res, rej) => {
-            this.dialogRef = this.dialog.open(ConfirmationComponent, {
-                maxHeight: "90vh",
-                maxWidth: "90vw",
-                panelClass: ["dialog-" + name],
-                closeOnNavigation: true,
-                restoreFocus: true,
-                data: {title, message}
-            });
+            // this.dialogRef = this.dialog.open(ConfirmationComponent, {
+            //     maxHeight: "90vh",
+            //     maxWidth: "90vw",
+            //     panelClass: ["dialog-" + name],
+            //     closeOnNavigation: true,
+            //     restoreFocus: true,
+            //     data: {title, message}
+            // });
 
             this.dialogRef.afterClosed().subscribe(result => {
                 result == true ? res() : rej();

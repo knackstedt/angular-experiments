@@ -1,17 +1,34 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { NavigationService } from 'src/app/services/navigation.service';
 import { DialogService } from 'src/app/services/dialog.service';
 import { NotificationService } from './services/notification.service';
 
 import { Fetch } from './services/fetch.service';
 import { ToasterService } from './services/toaster.service';
 import { KeyboardService } from './services/keyboard.service';
+import { LazyLoaderModule, NavigationService } from '@dotglitch/ngx-common';
+import { ToastComponent } from 'src/app/components/toast/toast.component';
+import { BackdropComponent } from 'src/app/components/backdrop/backdrop.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     selector: 'app-root',
     templateUrl: './root.component.html',
     styleUrls: ['./root.component.scss'],
-    standalone: false
+    imports: [
+        ToastComponent,
+        BackdropComponent,
+        MatIconModule,
+        MatToolbarModule,
+        MatSidenavModule,
+        MatButtonModule,
+        LazyLoaderModule,
+        NavbarComponent
+    ],
+    standalone: true
 })
 export class RootComponent {
     isMobile = false;
@@ -24,19 +41,7 @@ export class RootComponent {
         public dialog: DialogService,
         private notification: NotificationService,
         private keyboard: KeyboardService
-        ) {
-
-        // This application should _never_ be loaded within an iframe.
-        if (window != window.top) {
-            document.body.classList.add("fatal-error");
-            this.fatalError = true;
-            return;
-        }
-
-        notification.subscribe(v => {
-            if (v.version)
-                this.toaster.information("New version", "Thank you for using my Angular Experiment. I just published a new version that you can get by refreshing your webpage.");
-        });
+    ) {
 
         this.onResize();
         // Is this necessary?

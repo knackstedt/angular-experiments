@@ -1,8 +1,8 @@
-@import "@fontsource/fira-sans";
-@import "@fontsource/material-icons-outlined";
+@forward "@fontsource/fira-sans";
+@forward "@fontsource/material-symbols-outlined";
 
-@import "./material.scss";
-@import "./dialogs.scss";
+@use "./material.scss";
+@use "./dialogs.scss";
 
 html,
 body {
@@ -22,7 +22,7 @@ body {
 }
 
 mat-icon.material-icons {
-    font-family: "Material Icons Outlined";
+    font-family: "Material Symbols Outlined";
 
     font-size: 24px;
 }

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import gsap from 'gsap';
 
@@ -6,9 +6,7 @@ import gsap from 'gsap';
   selector: 'app-overlay-wrapper',
   templateUrl: './overlay-wrapper.component.html',
   styleUrls: ['./overlay-wrapper.component.scss'],
-  imports: [
-    CommonModule
-  ],
+  imports: [],
   standalone: true
 })
 export class OverlayWrapperComponent implements AfterViewInit {

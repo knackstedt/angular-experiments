@@ -1,4 +1,4 @@
-import { NgForOf } from '@angular/common';
+
 import { Component, HostListener, ViewEncapsulation } from '@angular/core';
 import SwiperCore, { Lazy, Pagination, Navigation, Virtual, Keyboard } from "swiper";
 import { SwiperModule } from 'swiper/angular';
@@ -15,9 +15,8 @@ const cardWidth = 400;
     templateUrl: './carousel.component.html',
     styleUrls: ['./carousel.component.scss'],
     imports: [
-        NgForOf,
-        SwiperModule
-    ],
+    SwiperModule
+],
     standalone: true,
     encapsulation: ViewEncapsulation.None
 })

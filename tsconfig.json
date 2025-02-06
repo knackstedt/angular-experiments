@@ -17,6 +17,7 @@
     "importHelpers": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "target": "ES2022",
     "module": "es2020",
     "jsx": "react",
@@ -28,12 +29,12 @@
         // "@dotglitch/ngx-lazy-loader": [
         //     "../@dotglitch_ngx-lazy-loader/dist/ngx-lazy-loader"
         // ],
-        "path": [
-            "src/empty.ts"
-        ],
-        "fs": [
-            "src/empty.ts"
-        ]
+        // "path": [
+        //     "src/empty.ts"
+        // ],
+        // "fs": [
+        //     "src/empty.ts"
+        // ]
     },
     "useDefineForClassFields": false
   },

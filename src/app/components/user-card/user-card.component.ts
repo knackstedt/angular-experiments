@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+
 import { Component, Input } from '@angular/core';
 import { PopupCardComponent } from 'src/app/components/popup-card/popup-card.component';
 
@@ -20,9 +20,8 @@ export type UserCard = {
     templateUrl: './user-card.component.html',
     styleUrls: ['./user-card.component.scss'],
     imports: [
-        NgIf,
-        PopupCardComponent
-    ],
+    PopupCardComponent
+],
     standalone: true
 })
 export class UserCardComponent {

@@ -2,12 +2,10 @@
   "name": "angular-experiments",
   "version": "1.0.0",
   "scripts": {
-    "analyze": "node --max_old_space_size=5048 ./node_modules/@angular/cli/bin/ng.js build -c development --stats-json && webpack-bundle-analyzer ./dist/client/stats.json",
-    "analyze:prod": "node --max_old_space_size=5048 ./node_modules/@angular/cli/bin/ng.js build --stats-json --named-chunks && webpack-bundle-analyzer ./dist/client/stats.json",
-    "build:dev": "node --max_old_space_size=5048 ./node_modules/@angular/cli/bin/ng.js build -c development",
-    "build": "node --max_old_space_size=5048 ./node_modules/@angular/cli/bin/ng.js build --deploy-url=/ui/ --base-href=/",
+    "build:dev": "ng build -c development",
+    "build": "ng build",
     "postbuild": "npm version --json > dist/client/version.json",
-    "dev": "node --max_old_space_size=5048 ./node_modules/@angular/cli/bin/ng.js serve --port 4400 --ssl --proxy-config ./proxy.config.js"
+    "dev": "ng serve --port 4100 --ssl"
   },
   "private": true,
   "dependencies": {
@@ -22,8 +20,7 @@
     "@angular/platform-browser-dynamic": "^19.1.4",
     "@angular/router": "^19.1.4",
     "@angular/service-worker": "^19.1.4",
-    "@dotglitch/ngx-ctx-menu": "^0.2.13",
-    "@dotglitch/ngx-lazy-loader": "^0.0.22",
+    "@dotglitch/ngx-common": "^1.1.53",
     "@fontsource/fira-mono": "^5.1.1",
     "@fontsource/fira-sans": "^5.1.1",
     "@fontsource/material-symbols-outlined": "^5.0.3",
@@ -38,7 +35,7 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular/build": "^19.1.6",
+    "@angular-devkit/build-angular": "^19.1.5",
     "@angular/cli": "^19.1.6",
     "@angular/compiler-cli": "^19.1.4",
     "@types/gsap": "^3.0.0",

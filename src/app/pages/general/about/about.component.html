@@ -1,5 +1,7 @@
 <div>
-    <div class="team">
-        <app-user-card *ngFor="let member of team" [user]="member"></app-user-card>
-    </div>
+  <div class="team">
+    @for (member of team; track member) {
+      <app-user-card [user]="member"></app-user-card>
+    }
+  </div>
 </div>

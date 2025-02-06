@@ -1,7 +1,9 @@
 <mat-tab-group>
-    <mat-tab *ngFor="let tab of example" [label]="tab.label || 'Example'">
-        <app-vscode [code]="tab.value" [language]="tab.label.split('.').pop()"/>
+  @for (tab of example; track tab) {
+    <mat-tab [label]="tab.label || 'Example'">
+      <app-vscode [code]="tab.value" [language]="tab.label.split('.').pop()"/>
     </mat-tab>
+  }
 </mat-tab-group>
 
 <!-- TODO: Live viewer -->

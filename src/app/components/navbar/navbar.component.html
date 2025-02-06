@@ -1,14 +1,16 @@
 <div class="menu">
+  @for (page of pages; track page) {
     <a
-        *ngFor="let page of pages"
-        [href]="'#/' + page.id"
-        class="item"
-    >
+      [href]="'#/' + page.id"
+      class="item"
+      >
+      @if (page['icon']) {
         <mat-icon
-            *ngIf="page['icon']"
-            [fontIcon]="page['icon']"
-            [style.color]="page['color'] || 'var(--text-color)'"
-        />
-        {{page.id}}
+          [fontIcon]="page['icon']"
+          [style.color]="page['color'] || 'var(--text-color)'"
+          />
+      }
+      {{page.id}}
     </a>
+  }
 </div>
