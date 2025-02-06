@@ -15,8 +15,7 @@ import EntryContextExample from "./examples/05-entry-context";
     styleUrls: ['./ctx-menu.component.scss'],
     imports: [
         ExampleViewerComponent,
-    ],
-    standalone: true
+    ]
 })
 export class CtxMenuComponent {
     BasicExample = BasicExample;

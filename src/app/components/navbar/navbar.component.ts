@@ -12,8 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
         NgIf,
         NgForOf,
         MatIconModule
-    ],
-    standalone: true
+    ]
 })
 export class NavbarComponent {
 

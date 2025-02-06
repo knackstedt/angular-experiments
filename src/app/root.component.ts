@@ -10,7 +10,8 @@ import { KeyboardService } from './services/keyboard.service';
 @Component({
     selector: 'app-root',
     templateUrl: './root.component.html',
-    styleUrls: ['./root.component.scss']
+    styleUrls: ['./root.component.scss'],
+    standalone: false
 })
 export class RootComponent {
     isMobile = false;

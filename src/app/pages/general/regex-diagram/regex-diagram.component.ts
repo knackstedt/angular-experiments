@@ -6,9 +6,7 @@ import { Regex2RailRoadDiagram } from './diagram/regex-to-railroad';
     selector: 'app-regex-diagram',
     templateUrl: './regex-diagram.component.html',
     styleUrls: ['./regex-diagram.component.scss'],
-    imports: [
-    ],
-    standalone: true
+    imports: []
 })
 export class RegexDiagramComponent implements AfterViewInit {
     @ViewChild('diagram', { read: ElementRef, static: false }) diagram: ElementRef;

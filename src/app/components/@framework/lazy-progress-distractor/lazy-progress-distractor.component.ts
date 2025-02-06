@@ -5,8 +5,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     selector: 'app-lazy-progress-distractor',
     templateUrl: './lazy-progress-distractor.component.html',
     styleUrls: ['./lazy-progress-distractor.component.scss'],
-    imports: [MatProgressSpinnerModule],
-    standalone: true
+    imports: [MatProgressSpinnerModule]
 })
 export class LazyProgressDistractorComponent {
     @Input() isDestroying = false;

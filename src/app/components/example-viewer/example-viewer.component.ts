@@ -11,8 +11,7 @@ import { VscodeComponent } from 'src/app/pages/general/vscode/vscode.component';
         NgForOf,
         MatTabsModule,
         VscodeComponent
-    ],
-    standalone: true
+    ]
 })
 export class ExampleViewerComponent implements OnInit {
 

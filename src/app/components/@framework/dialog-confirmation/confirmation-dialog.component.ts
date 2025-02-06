@@ -3,7 +3,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
     templateUrl: './confirmation-dialog.component.html',
-    styleUrls: ['./confirmation-dialog.component.scss']
+    styleUrls: ['./confirmation-dialog.component.scss'],
+    standalone: false
 })
 export class ConfirmationComponent {
 

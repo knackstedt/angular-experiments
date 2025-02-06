@@ -10,7 +10,6 @@ import { CommonModule } from '@angular/common';
         CommonModule,
         MatProgressSpinnerModule
     ],
-    standalone: true,
     encapsulation: ViewEncapsulation.None
 })
 export class BackdropComponent implements AfterViewInit {

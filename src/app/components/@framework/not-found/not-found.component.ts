@@ -9,8 +9,7 @@ import { CommonModule } from '@angular/common';
     selector: 'ngx-not-found',
     templateUrl: './not-found.component.html',
     styleUrls: ['./not-found.component.scss'],
-    imports: [ CommonModule, MatButtonModule ],
-    standalone: true
+    imports: [CommonModule, MatButtonModule]
 })
 export class NotFoundComponent implements OnDestroy {
 
