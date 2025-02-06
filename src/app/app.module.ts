@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
@@ -22,13 +22,11 @@ import { NotFoundComponent } from 'src/app/components/@framework/not-found/not-f
 import { LazyProgressDistractorComponent } from './components/@framework/lazy-progress-distractor/lazy-progress-distractor.component';
 
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         RootComponent,
         ToastComponent,
     ],
-    imports: [
-        BrowserModule,
+    bootstrap: [RootComponent], imports: [BrowserModule,
         BrowserAnimationsModule,
         MatToolbarModule,
         MatDialogModule,
@@ -38,7 +36,6 @@ import { LazyProgressDistractorComponent } from './components/@framework/lazy-pr
         UrlSanitizer,
         BackdropComponent,
         NavbarComponent,
-        HttpClientModule,
         ServiceWorkerModule.register('ngsw-worker.js', {
             enabled: environment.production,
             // Register the ServiceWorker as soon as the application is stable
@@ -50,16 +47,13 @@ import { LazyProgressDistractorComponent } from './components/@framework/lazy-pr
             componentResolveStrategy: ComponentResolveStrategy.PickFirst,
             notFoundComponent: NotFoundComponent,
             loaderDistractorComponent: LazyProgressDistractorComponent
-        })
-    ],
-    providers: [
+        })], providers: [
         {
             provide: HTTP_INTERCEPTORS,
             useClass: LoaderInterceptor,
             multi: true
-        }
-    ],
-    bootstrap: [RootComponent]
-})
+        },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule {
 }
